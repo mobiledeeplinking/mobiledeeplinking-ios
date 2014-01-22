@@ -53,7 +53,16 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    [[MobileDeepLinking sharedInstance] routeUsingUrl:url viewController:self.window.rootViewController];
+    NSLog(@"scheme: %@", [url scheme]);
+    NSLog(@"host: %@", [url host]);
+    NSLog(@"port: %@", [url port]);
+    NSLog(@"path: %@", [url path]);
+    NSLog(@"path components: %@", [url pathComponents]);
+    NSLog(@"parameterString: %@", [url parameterString]);
+    NSLog(@"query: %@", [url query]);
+    NSLog(@"fragment: %@", [url fragment]);
+    
+    [[MobileDeepLinking sharedInstance] routeUsingUrl:url];
     return YES;
 }
 

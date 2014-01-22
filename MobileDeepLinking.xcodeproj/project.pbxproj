@@ -22,6 +22,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		5C5932F392CE22BFDB3882D2 /* MobileDeepLinking_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C593F1A244A8594687EACD8 /* MobileDeepLinking_Private.h */; };
+		AA94CBFD18906594005A2855 /* MobileDeepLinkingConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = AA94CBFC18905C83005A2855 /* MobileDeepLinkingConfig.json */; };
 		AABF8DF6188F29B900E35A09 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AABF8DF5188F29B900E35A09 /* Foundation.framework */; };
 		AABF8DFB188F29B900E35A09 /* MobileDeepLinking.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AABF8DFA188F29B900E35A09 /* MobileDeepLinking.h */; };
 		AABF8DFD188F29B900E35A09 /* MobileDeepLinking.m in Sources */ = {isa = PBXBuildFile; fileRef = AABF8DFC188F29B900E35A09 /* MobileDeepLinking.m */; };
@@ -30,7 +32,7 @@
 		AABF8E07188F29BA00E35A09 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AABF8E06188F29BA00E35A09 /* UIKit.framework */; };
 		AABF8E0A188F29BA00E35A09 /* libMobileDeepLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AABF8DF2188F29B900E35A09 /* libMobileDeepLinking.a */; };
 		AABF8E10188F29BA00E35A09 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AABF8E0E188F29BA00E35A09 /* InfoPlist.strings */; };
-		AABF8E12188F29BA00E35A09 /* MobileDeepLinkingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AABF8E11188F29BA00E35A09 /* MobileDeepLinkingTest.m */; };
+		AABF8E12188F29BA00E35A09 /* MatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AABF8E11188F29BA00E35A09 /* MatcherTest.m */; };
 		AABF8E1C188F2AF700E35A09 /* MobileDeepLinking.h in Headers */ = {isa = PBXBuildFile; fileRef = AABF8DFA188F29B900E35A09 /* MobileDeepLinking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -79,6 +81,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5C593F1A244A8594687EACD8 /* MobileDeepLinking_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileDeepLinking_Private.h; sourceTree = "<group>"; };
+		AA94CBFC18905C83005A2855 /* MobileDeepLinkingConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = MobileDeepLinkingConfig.json; path = MobileDeepLinkingDemo/MobileDeepLinkingDemo/MobileDeepLinkingConfig.json; sourceTree = SOURCE_ROOT; };
 		AABF8DF2188F29B900E35A09 /* libMobileDeepLinking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMobileDeepLinking.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AABF8DF5188F29B900E35A09 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AABF8DF9188F29B900E35A09 /* MobileDeepLinking-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MobileDeepLinking-Prefix.pch"; sourceTree = "<group>"; };
@@ -89,7 +93,7 @@
 		AABF8E06188F29BA00E35A09 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		AABF8E0D188F29BA00E35A09 /* MobileDeepLinkingTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MobileDeepLinkingTests-Info.plist"; sourceTree = "<group>"; };
 		AABF8E0F188F29BA00E35A09 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		AABF8E11188F29BA00E35A09 /* MobileDeepLinkingTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MobileDeepLinkingTest.m; sourceTree = "<group>"; };
+		AABF8E11188F29BA00E35A09 /* MatcherTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatcherTest.m; sourceTree = "<group>"; };
 		AABF8E6F188F2D3400E35A09 /* MobileDeepLinkingDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MobileDeepLinkingDemo.xcodeproj; path = MobileDeepLinkingDemo/MobileDeepLinkingDemo.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,6 +156,7 @@
 				AABF8DFA188F29B900E35A09 /* MobileDeepLinking.h */,
 				AABF8DFC188F29B900E35A09 /* MobileDeepLinking.m */,
 				AABF8DF8188F29B900E35A09 /* Supporting Files */,
+				5C593F1A244A8594687EACD8 /* MobileDeepLinking_Private.h */,
 			);
 			name = MobileDeepLinking;
 			path = "MobileDeepLinking-iOS";
@@ -168,7 +173,7 @@
 		AABF8E0B188F29BA00E35A09 /* MobileDeepLinkingTest */ = {
 			isa = PBXGroup;
 			children = (
-				AABF8E11188F29BA00E35A09 /* MobileDeepLinkingTest.m */,
+				AABF8E11188F29BA00E35A09 /* MatcherTest.m */,
 				AABF8E0C188F29BA00E35A09 /* Supporting Files */,
 			);
 			name = MobileDeepLinkingTest;
@@ -178,6 +183,7 @@
 		AABF8E0C188F29BA00E35A09 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AA94CBFC18905C83005A2855 /* MobileDeepLinkingConfig.json */,
 				AABF8E0D188F29BA00E35A09 /* MobileDeepLinkingTests-Info.plist */,
 				AABF8E0E188F29BA00E35A09 /* InfoPlist.strings */,
 			);
@@ -201,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AABF8E1C188F2AF700E35A09 /* MobileDeepLinking.h in Headers */,
+				5C5932F392CE22BFDB3882D2 /* MobileDeepLinking_Private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +259,11 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = mobiledeeplinking;
+				TargetAttributes = {
+					AABF8E01188F29BA00E35A09 = {
+						TestTargetID = AABF8DF1188F29B900E35A09;
+					};
+				};
 			};
 			buildConfigurationList = AABF8DED188F29B900E35A09 /* Build configuration list for PBXProject "MobileDeepLinking" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -300,6 +312,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA94CBFD18906594005A2855 /* MobileDeepLinkingConfig.json in Resources */,
 				AABF8E10188F29BA00E35A09 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,7 +363,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AABF8E12188F29BA00E35A09 /* MobileDeepLinkingTest.m in Sources */,
+				AABF8E12188F29BA00E35A09 /* MatcherTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,7 +504,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MobileDeepLinking-iOS/MobileDeepLinking-iOS-Prefix.pch";
+				GCC_PREFIX_HEADER = "MobileDeepLinking-iOS/MobileDeepLinking-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -512,7 +525,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MobileDeepLinking-iOS/MobileDeepLinking-iOS-Prefix.pch";
+				GCC_PREFIX_HEADER = "MobileDeepLinking-iOS/MobileDeepLinking-Prefix.pch";
 				INFOPLIST_FILE = "MobileDeepLinking-iOSTests/MobileDeepLinkingTests-Info.plist";
 				PRODUCT_NAME = MobileDeepLinkingTests;
 				WRAPPER_EXTENSION = xctest;
@@ -552,6 +565,7 @@
 				AABF8E17188F29BA00E35A09 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AABF8E18188F29BA00E35A09 /* Build configuration list for PBXNativeTarget "MobileDeepLinkingTests" */ = {
 			isa = XCConfigurationList;
@@ -560,6 +574,7 @@
 				AABF8E1A188F29BA00E35A09 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AABF8E1F188F2C7400E35A09 /* Build configuration list for PBXAggregateTarget "Framework" */ = {
 			isa = XCConfigurationList;
@@ -568,6 +583,7 @@
 				AABF8E21188F2C7400E35A09 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -10,12 +10,12 @@
 
 }
 
-@synthesize name;
+@synthesize dataId;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(name);
+    NSLog(@"%@", dataId);
 	// Do any additional setup after loading the view, typically from a nib.
 }
 

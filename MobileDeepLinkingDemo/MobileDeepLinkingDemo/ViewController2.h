@@ -7,5 +7,6 @@
 
 
 @interface ViewController2 : UIViewController
-@property(nonatomic, strong) id name;
+
+@property(nonatomic, strong) id dataId;
 @end
