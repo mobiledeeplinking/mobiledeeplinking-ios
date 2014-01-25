@@ -1,15 +1,15 @@
 {
-	"logging": true,
-	"storyboard": "Main_iPhone",
-	"defaultRoute": {
-		"class": "DataViewController",
-		"identifier": "DataViewController"
-	},
-	"routes": {						
-		"data/:dataId": {
-			"class": "ViewController2",
-			"identifier": "ViewController2",
+    "logging": true,
+    "storyboard": "Main_iPhone",
+    "defaultRoute": {
+        "class": "DataViewController",
+        "identifier": "DataViewController"
+    },
+    "routes": {
+        "data/:dataId": {
+            "class": "ViewController2",
+            "identifier": "ViewController2",
             "handlers": ["myHandler"]
-		}
-	}
+        }
+    }
 }

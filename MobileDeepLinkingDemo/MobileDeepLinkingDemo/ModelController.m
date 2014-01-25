@@ -19,8 +19,8 @@
  There is no need to actually create view controllers for each page in advance -- indeed doing so incurs unnecessary overhead. Given the data model, these methods create, configure, and return a new view controller on demand.
  */
 
-@interface ModelController()
-@property (readonly, strong, nonatomic) NSArray *pageData;
+@interface ModelController ()
+@property(readonly, strong, nonatomic) NSArray *pageData;
 @end
 
 @implementation ModelController
@@ -28,7 +28,8 @@
 - (id)init
 {
     self = [super init];
-    if (self) {
+    if (self)
+    {
         // Create the data model.
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         _pageData = [[dateFormatter monthSymbols] copy];
@@ -37,12 +38,13 @@
 }
 
 - (DataViewController *)viewControllerAtIndex:(NSUInteger)index storyboard:(UIStoryboard *)storyboard
-{   
+{
     // Return the data view controller for the given index.
-    if (([self.pageData count] == 0) || (index >= [self.pageData count])) {
+    if (([self.pageData count] == 0) || (index >= [self.pageData count]))
+    {
         return nil;
     }
-    
+
     // Create a new view controller and pass suitable data.
     DataViewController *dataViewController = [storyboard instantiateViewControllerWithIdentifier:@"DataViewController"];
     dataViewController.dataObject = self.pageData[index];
@@ -50,9 +52,9 @@
 }
 
 - (NSUInteger)indexOfViewController:(DataViewController *)viewController
-{   
-     // Return the index of the given data view controller.
-     // For simplicity, this implementation uses a static array of model objects and the view controller stores the model object; you can therefore use the model object to identify the index.
+{
+    // Return the index of the given data view controller.
+    // For simplicity, this implementation uses a static array of model objects and the view controller stores the model object; you can therefore use the model object to identify the index.
     return [self.pageData indexOfObject:viewController.dataObject];
 }
 
@@ -60,24 +62,27 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
-    NSUInteger index = [self indexOfViewController:(DataViewController *)viewController];
-    if ((index == 0) || (index == NSNotFound)) {
+    NSUInteger index = [self indexOfViewController:(DataViewController *) viewController];
+    if ((index == 0) || (index == NSNotFound))
+    {
         return nil;
     }
-    
+
     index--;
     return [self viewControllerAtIndex:index storyboard:viewController.storyboard];
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
-    NSUInteger index = [self indexOfViewController:(DataViewController *)viewController];
-    if (index == NSNotFound) {
+    NSUInteger index = [self indexOfViewController:(DataViewController *) viewController];
+    if (index == NSNotFound)
+    {
         return nil;
     }
-    
+
     index++;
-    if (index == [self.pageData count]) {
+    if (index == [self.pageData count])
+    {
         return nil;
     }
     return [self viewControllerAtIndex:index storyboard:viewController.storyboard];

@@ -11,8 +11,10 @@
 
 @interface MobileDeepLinking : NSObject
 
-+ (id) sharedInstance;
-- (void) registerHandlerWithName:(NSString *)handlerName handler:(void(^)(NSDictionary *))handlerFunction;
++ (id)sharedInstance;
+
+- (void)registerHandlerWithName:(NSString *)handlerName handler:(void (^)(NSDictionary *))handlerFunction;
+
 - (void)routeUsingUrl:(NSURL *)customUrl;
 
 @end

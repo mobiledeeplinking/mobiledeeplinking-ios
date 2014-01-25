@@ -99,7 +99,8 @@ NSString *REQUIRED_JSON_NAME = @"required";
     // base case
     if ([[customUrl path] isEqualToString:@"/"])
     {
-        if (loggingEnabled) { NSLog(@"No Routes Match.");}
+        if (loggingEnabled)
+        {NSLog(@"No Routes Match.");}
         [self routeToDefaultRoute];
     }
 
@@ -113,7 +114,8 @@ NSString *REQUIRED_JSON_NAME = @"required";
             {
                 if (error != nil)
                 {
-                    if (loggingEnabled) { NSLog(@"Error Getting routeParameterValues: %@", error.localizedDescription); };
+                    if (loggingEnabled)
+                    {NSLog(@"Error Getting routeParameterValues: %@", error.localizedDescription);};
                     [self routeToDefaultRoute];
                 }
             }
@@ -121,7 +123,8 @@ NSString *REQUIRED_JSON_NAME = @"required";
             BOOL success = [self handleRouteWithOptions:routeOptions params:routeParameterValues storyboard:storyboardName];
             if (success == NO)
             {
-                if (loggingEnabled) { NSLog(@"Error when handling route: %@", error.localizedDescription);};
+                if (loggingEnabled)
+                {NSLog(@"Error when handling route: %@", error.localizedDescription);};
                 [self routeToDefaultRoute];
             }
             return;
@@ -137,7 +140,8 @@ NSString *REQUIRED_JSON_NAME = @"required";
 
 - (void)routeToDefaultRoute
 {
-    if (loggingEnabled) { NSLog(@"Routing to Default Route.");}
+    if (loggingEnabled)
+    {NSLog(@"Routing to Default Route.");}
     [self handleRouteWithOptions:[config objectForKey:DEFAULT_ROUTE_JSON_NAME] params:nil storyboard:[config objectForKey:STORYBOARD_JSON_NAME]];
 }
 
@@ -207,7 +211,8 @@ NSString *REQUIRED_JSON_NAME = @"required";
             BOOL valid = [newViewController validateValue:&valueToValidate forKey:routeParam error:&error];
             if (valid == NO)
             {
-                if (loggingEnabled) { NSLog(@"Validation error when setting key:%@. Reason:%@", routeParam, error.localizedDescription);}
+                if (loggingEnabled)
+                {NSLog(@"Validation error when setting key:%@. Reason:%@", routeParam, error.localizedDescription);}
                 return NO;
             }
 
@@ -243,20 +248,23 @@ NSString *REQUIRED_JSON_NAME = @"required";
 
     if ((storyboardName != nil) && (identifier != nil))
     {
-        if (loggingEnabled) { NSLog(@"Routing to %@.", [routeOptions objectForKey:IDENTIFIER_JSON_NAME]);}
+        if (loggingEnabled)
+        {NSLog(@"Routing to %@.", [routeOptions objectForKey:IDENTIFIER_JSON_NAME]);}
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
         return [storyboard instantiateViewControllerWithIdentifier:[routeOptions objectForKey:IDENTIFIER_JSON_NAME]];
     }
     else if ((class != nil) && (identifier != nil))
     {
         // Create view controller with nib.
-        if (loggingEnabled) { NSLog(@"Routing to %@.", [routeOptions objectForKey:CLASS_JSON_NAME]);}
+        if (loggingEnabled)
+        {NSLog(@"Routing to %@.", [routeOptions objectForKey:CLASS_JSON_NAME]);}
         return [[NSClassFromString([routeOptions objectForKey:CLASS_JSON_NAME]) alloc] initWithNibName:[routeOptions objectForKey:IDENTIFIER_JSON_NAME] bundle:nil];
     }
     else if (class != nil)
     {
         // Create a old-fashioned view controller without storyboard or nib.
-        if (loggingEnabled) { NSLog(@"Routing to %@.", [routeOptions objectForKey:CLASS_JSON_NAME]);}
+        if (loggingEnabled)
+        {NSLog(@"Routing to %@.", [routeOptions objectForKey:CLASS_JSON_NAME]);}
         return [[NSClassFromString([routeOptions objectForKey:CLASS_JSON_NAME]) alloc] init];
     }
     else
@@ -277,7 +285,7 @@ NSString *REQUIRED_JSON_NAME = @"required";
         return nil;
     }
 
-    for (NSString* requiredValueKey in requiredRouteParameterValues)
+    for (NSString *requiredValueKey in requiredRouteParameterValues)
     {
         if ([routeParameterValues objectForKey:requiredValueKey] == nil)
         {
@@ -295,7 +303,7 @@ NSString *REQUIRED_JSON_NAME = @"required";
     for (id routeParameter in routeParameters)
     {
         NSDictionary *routeParameterOptions = [routeParameters objectForKey:routeParameter];
-        if ([[routeParameterOptions objectForKey:REQUIRED_JSON_NAME] isEqual: @"true"])
+        if ([[routeParameterOptions objectForKey:REQUIRED_JSON_NAME] isEqual:@"true"])
         {
             if ([routeParameter hasPrefix:@":"])
             {
@@ -312,7 +320,7 @@ NSString *REQUIRED_JSON_NAME = @"required";
 }
 
 - (BOOL)parsePathParametersWithRouteDefinition:(NSString *)routeDefinition routeOptions:(NSDictionary *)routeOptions url:(NSURL *)customUrl
-             intoDictionary:routeParameterValues error:(NSError **)error
+                                intoDictionary:routeParameterValues error:(NSError **)error
 {
     NSMutableArray *routeDefinitionComponents = [NSMutableArray arrayWithArray:[routeDefinition componentsSeparatedByString:@"/"]];
     NSMutableArray *customUrlPathComponents = [NSMutableArray arrayWithArray:[[customUrl path] componentsSeparatedByString:@"/"]];
@@ -363,7 +371,7 @@ NSString *REQUIRED_JSON_NAME = @"required";
 *
 * Note, this does handle escaped query parameters.
 */
-- (BOOL)parseQueryParameters:(NSString *)queryString routeOptions:(NSDictionary *)routeOptions intoDictionary:(NSMutableDictionary *)routeParameterValues  error:(NSError **)error
+- (BOOL)parseQueryParameters:(NSString *)queryString routeOptions:(NSDictionary *)routeOptions intoDictionary:(NSMutableDictionary *)routeParameterValues error:(NSError **)error
 {
     NSDictionary *routeParameters = [routeOptions objectForKey:ROUTE_PARAMS_JSON_NAME];
     NSArray *queryPairs = [queryString componentsSeparatedByString:@"&"];
@@ -372,14 +380,14 @@ NSString *REQUIRED_JSON_NAME = @"required";
         NSArray *nameAndValue = [keyValuePair componentsSeparatedByString:@"="];
         if ([nameAndValue count] == 2)
         {
-            NSString * name = [[nameAndValue objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSString *name = [[nameAndValue objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             // only accept query parameters that have been specified in route parameters
             if ([[routeParameters allKeys] containsObject:name] == NO)
             {
                 continue;
             }
 
-            NSString * value = [[nameAndValue objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSString *value = [[nameAndValue objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             [routeParameterValues setValue:value forKey:name];
         }
     }
@@ -443,7 +451,8 @@ NSString *REQUIRED_JSON_NAME = @"required";
                     }
                     else
                     {
-                        if (loggingEnabled) { NSLog(@"Invalid Regex set for %@", routeDefinitionComponent); }
+                        if (loggingEnabled)
+                        {NSLog(@"Invalid Regex set for %@", routeDefinitionComponent);}
                         return NO;
                     }
                 }

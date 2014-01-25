@@ -13,9 +13,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[MobileDeepLinking sharedInstance] registerHandlerWithName:@"myHandler" handler:^void(NSDictionary * params) {
+    [[MobileDeepLinking sharedInstance] registerHandlerWithName:@"myHandler" handler:^void(NSDictionary *params)
+    {
         NSLog(@"In the block!");
-        for (NSString * param in params)
+        for (NSString *param in params)
         {
             NSLog(@"%@: %@", param, [params objectForKey:param]);
         }
@@ -61,7 +62,7 @@
     NSLog(@"parameterString: %@", [url parameterString]);
     NSLog(@"query: %@", [url query]);
     NSLog(@"fragment: %@", [url fragment]);
-    
+
     [[MobileDeepLinking sharedInstance] routeUsingUrl:url];
     return YES;
 }

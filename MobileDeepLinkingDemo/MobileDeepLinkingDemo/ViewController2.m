@@ -6,7 +6,8 @@
 #import "ViewController2.h"
 
 
-@implementation ViewController2 {
+@implementation ViewController2
+{
 
 }
 
@@ -16,7 +17,7 @@
 {
     [super viewDidLoad];
     NSLog(@"%@", dataId);
-	// Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)didReceiveMemoryWarning
