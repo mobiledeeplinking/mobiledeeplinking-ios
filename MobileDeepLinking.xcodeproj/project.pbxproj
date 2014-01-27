@@ -1,1276 +1,631 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>archiveVersion</key>
-	<string>1</string>
-	<key>classes</key>
-	<dict/>
-	<key>objectVersion</key>
-	<string>46</string>
-	<key>objects</key>
-	<dict>
-		<key>0C4D215A1AC44BF79D1B44BE</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>Check Pods Manifest.lock</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
-if [[ $? != 0 ]] ; then
-    cat &lt;&lt; EOM
-error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
-EOM
-    exit 1
-fi
-</string>
-			<key>showEnvVarsInLog</key>
-			<string>0</string>
-		</dict>
-		<key>5C5932F392CE22BFDB3882D2</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5C593F1A244A8594687EACD8</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5C593F1A244A8594687EACD8</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>MobileDeepLinking_Private.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>9EEB6824015A495E80B6F714</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>archive.ar</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>libPods.a</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>AA94CBFC18905C83005A2855</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.json</string>
-			<key>name</key>
-			<string>MobileDeepLinkingConfig.json</string>
-			<key>path</key>
-			<string>MobileDeepLinkingDemo/MobileDeepLinkingDemo/MobileDeepLinkingConfig.json</string>
-			<key>sourceTree</key>
-			<string>SOURCE_ROOT</string>
-		</dict>
-		<key>AA94CBFD18906594005A2855</key>
-		<dict>
-			<key>fileRef</key>
-			<string>AA94CBFC18905C83005A2855</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>AABF8DE9188F29B900E35A09</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>AABF8DF7188F29B900E35A09</string>
-				<string>AABF8E0B188F29BA00E35A09</string>
-				<string>AABF8DF4188F29B900E35A09</string>
-				<string>AABF8DF3188F29B900E35A09</string>
-				<string>AABF8E6F188F2D3400E35A09</string>
-				<string>C7404A1DC1E84E8E918CE51B</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>AABF8DEA188F29B900E35A09</key>
-		<dict>
-			<key>attributes</key>
-			<dict>
-				<key>LastUpgradeCheck</key>
-				<string>0500</string>
-				<key>ORGANIZATIONNAME</key>
-				<string>mobiledeeplinking</string>
-				<key>TargetAttributes</key>
-				<dict>
-					<key>AABF8E01188F29BA00E35A09</key>
-					<dict>
-						<key>TestTargetID</key>
-						<string>AABF8DF1188F29B900E35A09</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>buildConfigurationList</key>
-			<string>AABF8DED188F29B900E35A09</string>
-			<key>compatibilityVersion</key>
-			<string>Xcode 3.2</string>
-			<key>developmentRegion</key>
-			<string>English</string>
-			<key>hasScannedForEncodings</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXProject</string>
-			<key>knownRegions</key>
-			<array>
-				<string>en</string>
-			</array>
-			<key>mainGroup</key>
-			<string>AABF8DE9188F29B900E35A09</string>
-			<key>productRefGroup</key>
-			<string>AABF8DF3188F29B900E35A09</string>
-			<key>projectDirPath</key>
-			<string></string>
-			<key>projectReferences</key>
-			<array>
-				<dict>
-					<key>ProductGroup</key>
-					<string>AABF8E70188F2D3400E35A09</string>
-					<key>ProjectRef</key>
-					<string>AABF8E6F188F2D3400E35A09</string>
-				</dict>
-			</array>
-			<key>projectRoot</key>
-			<string></string>
-			<key>targets</key>
-			<array>
-				<string>AABF8DF1188F29B900E35A09</string>
-				<string>AABF8E01188F29BA00E35A09</string>
-				<string>AABF8E1E188F2C7300E35A09</string>
-			</array>
-		</dict>
-		<key>AABF8DED188F29B900E35A09</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>AABF8E13188F29BA00E35A09</string>
-				<string>AABF8E14188F29BA00E35A09</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>AABF8DEE188F29B900E35A09</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>AABF8DFD188F29B900E35A09</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>AABF8DEF188F29B900E35A09</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>AABF8DF6188F29B900E35A09</string>
-				<string>DA68B68406084165BCFDB0C3</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>AABF8DF0188F29B900E35A09</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>dstPath</key>
-			<string>include/$(PRODUCT_NAME)</string>
-			<key>dstSubfolderSpec</key>
-			<string>16</string>
-			<key>files</key>
-			<array>
-				<string>AABF8DFB188F29B900E35A09</string>
-			</array>
-			<key>isa</key>
-			<string>PBXCopyFilesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>AABF8DF1188F29B900E35A09</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>AABF8E15188F29BA00E35A09</string>
-			<key>buildPhases</key>
-			<array>
-				<string>0C4D215A1AC44BF79D1B44BE</string>
-				<string>AABF8DEE188F29B900E35A09</string>
-				<string>AABF8DEF188F29B900E35A09</string>
-				<string>AABF8DF0188F29B900E35A09</string>
-				<string>AABF8E1B188F2AE900E35A09</string>
-				<string>AABF8E1D188F2BE300E35A09</string>
-				<string>DFFF4D9F70DC4EB0BD224010</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>MobileDeepLinking</string>
-			<key>productName</key>
-			<string>MobileDeepLinking-iOS</string>
-			<key>productReference</key>
-			<string>AABF8DF2188F29B900E35A09</string>
-			<key>productType</key>
-			<string>com.apple.product-type.library.static</string>
-		</dict>
-		<key>AABF8DF2188F29B900E35A09</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>archive.ar</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>libMobileDeepLinking.a</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>AABF8DF3188F29B900E35A09</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>AABF8DF2188F29B900E35A09</string>
-				<string>AABF8E02188F29BA00E35A09</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Products</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>AABF8DF4188F29B900E35A09</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>AABF8DF5188F29B900E35A09</string>
-				<string>AABF8E03188F29BA00E35A09</string>
-				<string>AABF8E06188F29BA00E35A09</string>
-				<string>9EEB6824015A495E80B6F714</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>AABF8DF5188F29B900E35A09</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>Foundation.framework</string>
-			<key>path</key>
-			<string>System/Library/Frameworks/Foundation.framework</string>
-			<key>sourceTree</key>
-			<string>SDKROOT</string>
-		</dict>
-		<key>AABF8DF6188F29B900E35A09</key>
-		<dict>
-			<key>fileRef</key>
-			<string>AABF8DF5188F29B900E35A09</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>AABF8DF7188F29B900E35A09</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>AABF8DFA188F29B900E35A09</string>
-				<string>AABF8DFC188F29B900E35A09</string>
-				<string>AABF8DF8188F29B900E35A09</string>
-				<string>5C593F1A244A8594687EACD8</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>MobileDeepLinking</string>
-			<key>path</key>
-			<string>MobileDeepLinking-iOS</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>AABF8DF8188F29B900E35A09</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>AABF8DF9188F29B900E35A09</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Supporting Files</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>AABF8DF9188F29B900E35A09</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>MobileDeepLinking-Prefix.pch</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>AABF8DFA188F29B900E35A09</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>MobileDeepLinking.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>AABF8DFB188F29B900E35A09</key>
-		<dict>
-			<key>fileRef</key>
-			<string>AABF8DFA188F29B900E35A09</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>AABF8DFC188F29B900E35A09</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>MobileDeepLinking.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>AABF8DFD188F29B900E35A09</key>
-		<dict>
-			<key>fileRef</key>
-			<string>AABF8DFC188F29B900E35A09</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>AABF8DFE188F29BA00E35A09</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>AABF8E12188F29BA00E35A09</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>AABF8DFF188F29BA00E35A09</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>AABF8E04188F29BA00E35A09</string>
-				<string>AABF8E07188F29BA00E35A09</string>
-				<string>AABF8E0A188F29BA00E35A09</string>
-				<string>AABF8E05188F29BA00E35A09</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>AABF8E00188F29BA00E35A09</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>AA94CBFD18906594005A2855</string>
-				<string>AABF8E10188F29BA00E35A09</string>
-			</array>
-			<key>isa</key>
-			<string>PBXResourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>AABF8E01188F29BA00E35A09</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>AABF8E18188F29BA00E35A09</string>
-			<key>buildPhases</key>
-			<array>
-				<string>AABF8DFE188F29BA00E35A09</string>
-				<string>AABF8DFF188F29BA00E35A09</string>
-				<string>AABF8E00188F29BA00E35A09</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array>
-				<string>AABF8E09188F29BA00E35A09</string>
-			</array>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>MobileDeepLinkingTests</string>
-			<key>productName</key>
-			<string>MobileDeepLinking-iOSTests</string>
-			<key>productReference</key>
-			<string>AABF8E02188F29BA00E35A09</string>
-			<key>productType</key>
-			<string>com.apple.product-type.bundle.unit-test</string>
-		</dict>
-		<key>AABF8E02188F29BA00E35A09</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.cfbundle</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>MobileDeepLinkingTests.xctest</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>AABF8E03188F29BA00E35A09</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>XCTest.framework</string>
-			<key>path</key>
-			<string>Library/Frameworks/XCTest.framework</string>
-			<key>sourceTree</key>
-			<string>DEVELOPER_DIR</string>
-		</dict>
-		<key>AABF8E04188F29BA00E35A09</key>
-		<dict>
-			<key>fileRef</key>
-			<string>AABF8E03188F29BA00E35A09</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>AABF8E05188F29BA00E35A09</key>
-		<dict>
-			<key>fileRef</key>
-			<string>AABF8DF5188F29B900E35A09</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>AABF8E06188F29BA00E35A09</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>UIKit.framework</string>
-			<key>path</key>
-			<string>Library/Frameworks/UIKit.framework</string>
-			<key>sourceTree</key>
-			<string>DEVELOPER_DIR</string>
-		</dict>
-		<key>AABF8E07188F29BA00E35A09</key>
-		<dict>
-			<key>fileRef</key>
-			<string>AABF8E06188F29BA00E35A09</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>AABF8E08188F29BA00E35A09</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>AABF8DEA188F29B900E35A09</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>AABF8DF1188F29B900E35A09</string>
-			<key>remoteInfo</key>
-			<string>MobileDeepLinking-iOS</string>
-		</dict>
-		<key>AABF8E09188F29BA00E35A09</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>target</key>
-			<string>AABF8DF1188F29B900E35A09</string>
-			<key>targetProxy</key>
-			<string>AABF8E08188F29BA00E35A09</string>
-		</dict>
-		<key>AABF8E0A188F29BA00E35A09</key>
-		<dict>
-			<key>fileRef</key>
-			<string>AABF8DF2188F29B900E35A09</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>AABF8E0B188F29BA00E35A09</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>AABF8E11188F29BA00E35A09</string>
-				<string>AABF8E0C188F29BA00E35A09</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>MobileDeepLinkingTest</string>
-			<key>path</key>
-			<string>MobileDeepLinking-iOSTests</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>AABF8E0C188F29BA00E35A09</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>AA94CBFC18905C83005A2855</string>
-				<string>AABF8E0D188F29BA00E35A09</string>
-				<string>AABF8E0E188F29BA00E35A09</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Supporting Files</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>AABF8E0D188F29BA00E35A09</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>MobileDeepLinkingTests-Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>AABF8E0E188F29BA00E35A09</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>AABF8E0F188F29BA00E35A09</string>
-			</array>
-			<key>isa</key>
-			<string>PBXVariantGroup</string>
-			<key>name</key>
-			<string>InfoPlist.strings</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>AABF8E0F188F29BA00E35A09</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.strings</string>
-			<key>name</key>
-			<string>en</string>
-			<key>path</key>
-			<string>en.lproj/InfoPlist.strings</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>AABF8E10188F29BA00E35A09</key>
-		<dict>
-			<key>fileRef</key>
-			<string>AABF8E0E188F29BA00E35A09</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>AABF8E11188F29BA00E35A09</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>MatcherTest.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>AABF8E12188F29BA00E35A09</key>
-		<dict>
-			<key>fileRef</key>
-			<string>AABF8E11188F29BA00E35A09</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>AABF8E13188F29BA00E35A09</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>ALWAYS_SEARCH_USER_PATHS</key>
-				<string>NO</string>
-				<key>ARCHS</key>
-				<string>$(ARCHS_STANDARD_INCLUDING_64_BIT)</string>
-				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
-				<string>gnu++0x</string>
-				<key>CLANG_CXX_LIBRARY</key>
-				<string>libc++</string>
-				<key>CLANG_ENABLE_MODULES</key>
-				<string>YES</string>
-				<key>CLANG_ENABLE_OBJC_ARC</key>
-				<string>YES</string>
-				<key>CLANG_WARN_BOOL_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN_EMPTY_BODY</key>
-				<string>YES</string>
-				<key>CLANG_WARN_ENUM_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_INT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
-				<string>YES</string>
-				<key>COPY_PHASE_STRIP</key>
-				<string>NO</string>
-				<key>GCC_C_LANGUAGE_STANDARD</key>
-				<string>gnu99</string>
-				<key>GCC_DYNAMIC_NO_PIC</key>
-				<string>NO</string>
-				<key>GCC_OPTIMIZATION_LEVEL</key>
-				<string>0</string>
-				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
-				<array>
-					<string>DEBUG=1</string>
-					<string>$(inherited)</string>
-				</array>
-				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
-				<string>NO</string>
-				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
-				<string>YES</string>
-				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
-				<string>YES_ERROR</string>
-				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_FUNCTION</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_VARIABLE</key>
-				<string>YES</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>7.0</string>
-				<key>ONLY_ACTIVE_ARCH</key>
-				<string>YES</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>AABF8E14188F29BA00E35A09</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>ALWAYS_SEARCH_USER_PATHS</key>
-				<string>NO</string>
-				<key>ARCHS</key>
-				<string>$(ARCHS_STANDARD_INCLUDING_64_BIT)</string>
-				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
-				<string>gnu++0x</string>
-				<key>CLANG_CXX_LIBRARY</key>
-				<string>libc++</string>
-				<key>CLANG_ENABLE_MODULES</key>
-				<string>YES</string>
-				<key>CLANG_ENABLE_OBJC_ARC</key>
-				<string>YES</string>
-				<key>CLANG_WARN_BOOL_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN_EMPTY_BODY</key>
-				<string>YES</string>
-				<key>CLANG_WARN_ENUM_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_INT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
-				<string>YES</string>
-				<key>COPY_PHASE_STRIP</key>
-				<string>YES</string>
-				<key>ENABLE_NS_ASSERTIONS</key>
-				<string>NO</string>
-				<key>GCC_C_LANGUAGE_STANDARD</key>
-				<string>gnu99</string>
-				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
-				<string>YES</string>
-				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
-				<string>YES_ERROR</string>
-				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_FUNCTION</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_VARIABLE</key>
-				<string>YES</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>7.0</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>VALIDATE_PRODUCT</key>
-				<string>YES</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>AABF8E15188F29BA00E35A09</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>AABF8E16188F29BA00E35A09</string>
-				<string>AABF8E17188F29BA00E35A09</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>AABF8E16188F29BA00E35A09</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>C7404A1DC1E84E8E918CE51B</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>DEAD_CODE_STRIPPING</key>
-				<string>NO</string>
-				<key>DSTROOT</key>
-				<string>/tmp/MobileDeepLinking_iOS.dst</string>
-				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>MobileDeepLinking-iOS/MobileDeepLinking-Prefix.pch</string>
-				<key>OTHER_LDFLAGS</key>
-				<string>-ObjC</string>
-				<key>PRODUCT_NAME</key>
-				<string>MobileDeepLinking</string>
-				<key>PUBLIC_HEADERS_FOLDER_PATH</key>
-				<string>$(PROJECT_NAME)Headers</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>STRIP_STYLE</key>
-				<string>non-global</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>AABF8E17188F29BA00E35A09</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>C7404A1DC1E84E8E918CE51B</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>DEAD_CODE_STRIPPING</key>
-				<string>NO</string>
-				<key>DSTROOT</key>
-				<string>/tmp/MobileDeepLinking_iOS.dst</string>
-				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>MobileDeepLinking-iOS/MobileDeepLinking-Prefix.pch</string>
-				<key>OTHER_LDFLAGS</key>
-				<string>-ObjC</string>
-				<key>PRODUCT_NAME</key>
-				<string>MobileDeepLinking</string>
-				<key>PUBLIC_HEADERS_FOLDER_PATH</key>
-				<string>$(PROJECT_NAME)Headers</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>STRIP_STYLE</key>
-				<string>non-global</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>AABF8E18188F29BA00E35A09</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>AABF8E19188F29BA00E35A09</string>
-				<string>AABF8E1A188F29BA00E35A09</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>AABF8E19188F29BA00E35A09</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>ARCHS</key>
-				<string>$(ARCHS_STANDARD_INCLUDING_64_BIT)</string>
-				<key>FRAMEWORK_SEARCH_PATHS</key>
-				<array>
-					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
-					<string>$(inherited)</string>
-					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
-				</array>
-				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>MobileDeepLinking-iOS/MobileDeepLinking-Prefix.pch</string>
-				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
-				<array>
-					<string>DEBUG=1</string>
-					<string>$(inherited)</string>
-				</array>
-				<key>INFOPLIST_FILE</key>
-				<string>MobileDeepLinking-iOSTests/MobileDeepLinkingTests-Info.plist</string>
-				<key>PRODUCT_NAME</key>
-				<string>MobileDeepLinkingTests</string>
-				<key>WRAPPER_EXTENSION</key>
-				<string>xctest</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>AABF8E1A188F29BA00E35A09</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>ARCHS</key>
-				<string>$(ARCHS_STANDARD_INCLUDING_64_BIT)</string>
-				<key>FRAMEWORK_SEARCH_PATHS</key>
-				<array>
-					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
-					<string>$(inherited)</string>
-					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
-				</array>
-				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>MobileDeepLinking-iOS/MobileDeepLinking-Prefix.pch</string>
-				<key>INFOPLIST_FILE</key>
-				<string>MobileDeepLinking-iOSTests/MobileDeepLinkingTests-Info.plist</string>
-				<key>PRODUCT_NAME</key>
-				<string>MobileDeepLinkingTests</string>
-				<key>WRAPPER_EXTENSION</key>
-				<string>xctest</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>AABF8E1B188F2AE900E35A09</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>AABF8E1C188F2AF700E35A09</string>
-				<string>5C5932F392CE22BFDB3882D2</string>
-			</array>
-			<key>isa</key>
-			<string>PBXHeadersBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>AABF8E1C188F2AF700E35A09</key>
-		<dict>
-			<key>fileRef</key>
-			<string>AABF8DFA188F29B900E35A09</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>AABF8E1D188F2BE300E35A09</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>Prepare Framework</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>set -e
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
 
-mkdir -p "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers"
+/* Begin PBXAggregateTarget section */
+		AABF8E1E188F2C7300E35A09 /* Framework */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = AABF8E1F188F2C7400E35A09 /* Build configuration list for PBXAggregateTarget "Framework" */;
+			buildPhases = (
+				AABF8E24188F2C8500E35A09 /* Build Fat Binary */,
+			);
+			dependencies = (
+				AABF8E23188F2C7B00E35A09 /* PBXTargetDependency */,
+			);
+			name = Framework;
+			productName = Framework;
+		};
+/* End PBXAggregateTarget section */
 
-# Link the "Current" version to "A"
-/bin/ln -sfh A "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/Current"
-/bin/ln -sfh Versions/Current/Headers "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Headers"
-/bin/ln -sfh "Versions/Current/${PRODUCT_NAME}" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}"
+/* Begin PBXBuildFile section */
+		5C5932F392CE22BFDB3882D2 /* MobileDeepLinking_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C593F1A244A8594687EACD8 /* MobileDeepLinking_Private.h */; };
+		AA94CBFD18906594005A2855 /* MobileDeepLinkingConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = AA94CBFC18905C83005A2855 /* MobileDeepLinkingConfig.json */; };
+		AABF8DF6188F29B900E35A09 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AABF8DF5188F29B900E35A09 /* Foundation.framework */; };
+		AABF8DFB188F29B900E35A09 /* MobileDeepLinking.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AABF8DFA188F29B900E35A09 /* MobileDeepLinking.h */; };
+		AABF8DFD188F29B900E35A09 /* MobileDeepLinking.m in Sources */ = {isa = PBXBuildFile; fileRef = AABF8DFC188F29B900E35A09 /* MobileDeepLinking.m */; };
+		AABF8E04188F29BA00E35A09 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AABF8E03188F29BA00E35A09 /* XCTest.framework */; };
+		AABF8E05188F29BA00E35A09 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AABF8DF5188F29B900E35A09 /* Foundation.framework */; };
+		AABF8E07188F29BA00E35A09 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AABF8E06188F29BA00E35A09 /* UIKit.framework */; };
+		AABF8E0A188F29BA00E35A09 /* libMobileDeepLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AABF8DF2188F29B900E35A09 /* libMobileDeepLinking.a */; };
+		AABF8E10188F29BA00E35A09 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AABF8E0E188F29BA00E35A09 /* InfoPlist.strings */; };
+		AABF8E12188F29BA00E35A09 /* MatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AABF8E11188F29BA00E35A09 /* MatcherTest.m */; };
+		AABF8E1C188F2AF700E35A09 /* MobileDeepLinking.h in Headers */ = {isa = PBXBuildFile; fileRef = AABF8DFA188F29B900E35A09 /* MobileDeepLinking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DA68B68406084165BCFDB0C3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EEB6824015A495E80B6F714 /* libPods.a */; };
+/* End PBXBuildFile section */
 
-# The -a ensures that the headers maintain the source modification date so that we don't constantly
-# cause propagating rebuilds of files that import these headers.
-/bin/cp -a "${TARGET_BUILD_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers"</string>
-		</dict>
-		<key>AABF8E1E188F2C7300E35A09</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>AABF8E1F188F2C7400E35A09</string>
-			<key>buildPhases</key>
-			<array>
-				<string>AABF8E24188F2C8500E35A09</string>
-			</array>
-			<key>dependencies</key>
-			<array>
-				<string>AABF8E23188F2C7B00E35A09</string>
-			</array>
-			<key>isa</key>
-			<string>PBXAggregateTarget</string>
-			<key>name</key>
-			<string>Framework</string>
-			<key>productName</key>
-			<string>Framework</string>
-		</dict>
-		<key>AABF8E1F188F2C7400E35A09</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>AABF8E20188F2C7400E35A09</string>
-				<string>AABF8E21188F2C7400E35A09</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>AABF8E20188F2C7400E35A09</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>AABF8E21188F2C7400E35A09</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>AABF8E22188F2C7B00E35A09</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>AABF8DEA188F29B900E35A09</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>AABF8DF1188F29B900E35A09</string>
-			<key>remoteInfo</key>
-			<string>MobileDeepLinking</string>
-		</dict>
-		<key>AABF8E23188F2C7B00E35A09</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>target</key>
-			<string>AABF8DF1188F29B900E35A09</string>
-			<key>targetProxy</key>
-			<string>AABF8E22188F2C7B00E35A09</string>
-		</dict>
-		<key>AABF8E24188F2C8500E35A09</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>Build Fat Binary</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>set -e
-set +u
-# Avoid recursively calling this script.
-if [[ $SF_MASTER_SCRIPT_RUNNING ]]
-then
-exit 0
-fi
-set -u
-export SF_MASTER_SCRIPT_RUNNING=1
+/* Begin PBXContainerItemProxy section */
+		AABF8E08188F29BA00E35A09 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AABF8DEA188F29B900E35A09 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AABF8DF1188F29B900E35A09;
+			remoteInfo = "MobileDeepLinking-iOS";
+		};
+		AABF8E22188F2C7B00E35A09 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AABF8DEA188F29B900E35A09 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AABF8DF1188F29B900E35A09;
+			remoteInfo = MobileDeepLinking;
+		};
+		AABF8E74188F2D3500E35A09 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AABF8E6F188F2D3400E35A09 /* MobileDeepLinkingDemo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AABF8E2E188F2D3400E35A09;
+			remoteInfo = MobileDeepLinkingDemo;
+		};
+		AABF8E76188F2D3500E35A09 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AABF8E6F188F2D3400E35A09 /* MobileDeepLinkingDemo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AABF8E58188F2D3400E35A09;
+			remoteInfo = MobileDeepLinkingDemoTests;
+		};
+/* End PBXContainerItemProxy section */
 
-SF_TARGET_NAME=${PROJECT_NAME}
-SF_EXECUTABLE_PATH="lib${SF_TARGET_NAME}.a"
-SF_WRAPPER_NAME="${SF_TARGET_NAME}.framework"
+/* Begin PBXCopyFilesBuildPhase section */
+		AABF8DF0188F29B900E35A09 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				AABF8DFB188F29B900E35A09 /* MobileDeepLinking.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
-# The following conditionals come from
-# https://github.com/kstenerud/iOS-Universal-Framework
+/* Begin PBXFileReference section */
+		5C593F1A244A8594687EACD8 /* MobileDeepLinking_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileDeepLinking_Private.h; sourceTree = "<group>"; };
+		9EEB6824015A495E80B6F714 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA94CBFC18905C83005A2855 /* MobileDeepLinkingConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = MobileDeepLinkingConfig.json; path = MobileDeepLinkingDemo/MobileDeepLinkingDemo/MobileDeepLinkingConfig.json; sourceTree = SOURCE_ROOT; };
+		AABF8DF2188F29B900E35A09 /* libMobileDeepLinking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMobileDeepLinking.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AABF8DF5188F29B900E35A09 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		AABF8DF9188F29B900E35A09 /* MobileDeepLinking-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MobileDeepLinking-Prefix.pch"; sourceTree = "<group>"; };
+		AABF8DFA188F29B900E35A09 /* MobileDeepLinking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobileDeepLinking.h; sourceTree = "<group>"; };
+		AABF8DFC188F29B900E35A09 /* MobileDeepLinking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MobileDeepLinking.m; sourceTree = "<group>"; };
+		AABF8E02188F29BA00E35A09 /* MobileDeepLinkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileDeepLinkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AABF8E03188F29BA00E35A09 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		AABF8E06188F29BA00E35A09 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		AABF8E0D188F29BA00E35A09 /* MobileDeepLinkingTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MobileDeepLinkingTests-Info.plist"; sourceTree = "<group>"; };
+		AABF8E0F188F29BA00E35A09 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AABF8E11188F29BA00E35A09 /* MatcherTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatcherTest.m; sourceTree = "<group>"; };
+		AABF8E6F188F2D3400E35A09 /* MobileDeepLinkingDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MobileDeepLinkingDemo.xcodeproj; path = MobileDeepLinkingDemo/MobileDeepLinkingDemo.xcodeproj; sourceTree = "<group>"; };
+		C7404A1DC1E84E8E918CE51B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
 
-if [[ "$SDK_NAME" =~ ([A-Za-z]+) ]]
-then
-SF_SDK_PLATFORM=${BASH_REMATCH[1]}
-else
-echo "Could not find platform name from SDK_NAME: $SDK_NAME"
-exit 1
-fi
+/* Begin PBXFrameworksBuildPhase section */
+		AABF8DEF188F29B900E35A09 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AABF8DF6188F29B900E35A09 /* Foundation.framework in Frameworks */,
+				DA68B68406084165BCFDB0C3 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AABF8DFF188F29BA00E35A09 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AABF8E04188F29BA00E35A09 /* XCTest.framework in Frameworks */,
+				AABF8E07188F29BA00E35A09 /* UIKit.framework in Frameworks */,
+				AABF8E0A188F29BA00E35A09 /* libMobileDeepLinking.a in Frameworks */,
+				AABF8E05188F29BA00E35A09 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
-if [[ "$SDK_NAME" =~ ([0-9]+.*$) ]]
-then
-SF_SDK_VERSION=${BASH_REMATCH[1]}
-else
-echo "Could not find sdk version from SDK_NAME: $SDK_NAME"
-exit 1
-fi
+/* Begin PBXGroup section */
+		AABF8DE9188F29B900E35A09 = {
+			isa = PBXGroup;
+			children = (
+				AABF8DF7188F29B900E35A09 /* MobileDeepLinking */,
+				AABF8E0B188F29BA00E35A09 /* MobileDeepLinkingTest */,
+				AABF8DF4188F29B900E35A09 /* Frameworks */,
+				AABF8DF3188F29B900E35A09 /* Products */,
+				AABF8E6F188F2D3400E35A09 /* MobileDeepLinkingDemo.xcodeproj */,
+				C7404A1DC1E84E8E918CE51B /* Pods.xcconfig */,
+			);
+			sourceTree = "<group>";
+		};
+		AABF8DF3188F29B900E35A09 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AABF8DF2188F29B900E35A09 /* libMobileDeepLinking.a */,
+				AABF8E02188F29BA00E35A09 /* MobileDeepLinkingTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AABF8DF4188F29B900E35A09 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AABF8DF5188F29B900E35A09 /* Foundation.framework */,
+				AABF8E03188F29BA00E35A09 /* XCTest.framework */,
+				AABF8E06188F29BA00E35A09 /* UIKit.framework */,
+				9EEB6824015A495E80B6F714 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AABF8DF7188F29B900E35A09 /* MobileDeepLinking */ = {
+			isa = PBXGroup;
+			children = (
+				AABF8DFA188F29B900E35A09 /* MobileDeepLinking.h */,
+				AABF8DFC188F29B900E35A09 /* MobileDeepLinking.m */,
+				AABF8DF8188F29B900E35A09 /* Supporting Files */,
+				5C593F1A244A8594687EACD8 /* MobileDeepLinking_Private.h */,
+			);
+			name = MobileDeepLinking;
+			path = "MobileDeepLinking-iOS";
+			sourceTree = "<group>";
+		};
+		AABF8DF8188F29B900E35A09 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AABF8DF9188F29B900E35A09 /* MobileDeepLinking-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AABF8E0B188F29BA00E35A09 /* MobileDeepLinkingTest */ = {
+			isa = PBXGroup;
+			children = (
+				AABF8E11188F29BA00E35A09 /* MatcherTest.m */,
+				AABF8E0C188F29BA00E35A09 /* Supporting Files */,
+			);
+			name = MobileDeepLinkingTest;
+			path = "MobileDeepLinking-iOSTests";
+			sourceTree = "<group>";
+		};
+		AABF8E0C188F29BA00E35A09 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AA94CBFC18905C83005A2855 /* MobileDeepLinkingConfig.json */,
+				AABF8E0D188F29BA00E35A09 /* MobileDeepLinkingTests-Info.plist */,
+				AABF8E0E188F29BA00E35A09 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AABF8E70188F2D3400E35A09 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AABF8E75188F2D3500E35A09 /* MobileDeepLinkingDemo.app */,
+				AABF8E77188F2D3500E35A09 /* MobileDeepLinkingDemoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
 
-if [[ "$SF_SDK_PLATFORM" = "iphoneos" ]]
-then
-SF_OTHER_PLATFORM=iphonesimulator
-else
-SF_OTHER_PLATFORM=iphoneos
-fi
+/* Begin PBXHeadersBuildPhase section */
+		AABF8E1B188F2AE900E35A09 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AABF8E1C188F2AF700E35A09 /* MobileDeepLinking.h in Headers */,
+				5C5932F392CE22BFDB3882D2 /* MobileDeepLinking_Private.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
-if [[ "$BUILT_PRODUCTS_DIR" =~ (.*)$SF_SDK_PLATFORM$ ]]
-then
-SF_OTHER_BUILT_PRODUCTS_DIR="${BASH_REMATCH[1]}${SF_OTHER_PLATFORM}"
-else
-echo "Could not find platform name from build products directory: $BUILT_PRODUCTS_DIR"
-exit 1
-fi
+/* Begin PBXNativeTarget section */
+		AABF8DF1188F29B900E35A09 /* MobileDeepLinking */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AABF8E15188F29BA00E35A09 /* Build configuration list for PBXNativeTarget "MobileDeepLinking" */;
+			buildPhases = (
+				0C4D215A1AC44BF79D1B44BE /* Check Pods Manifest.lock */,
+				AABF8DEE188F29B900E35A09 /* Sources */,
+				AABF8DEF188F29B900E35A09 /* Frameworks */,
+				AABF8DF0188F29B900E35A09 /* CopyFiles */,
+				AABF8E1B188F2AE900E35A09 /* Headers */,
+				AABF8E1D188F2BE300E35A09 /* Prepare Framework */,
+				DFFF4D9F70DC4EB0BD224010 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MobileDeepLinking;
+			productName = "MobileDeepLinking-iOS";
+			productReference = AABF8DF2188F29B900E35A09 /* libMobileDeepLinking.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		AABF8E01188F29BA00E35A09 /* MobileDeepLinkingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AABF8E18188F29BA00E35A09 /* Build configuration list for PBXNativeTarget "MobileDeepLinkingTests" */;
+			buildPhases = (
+				AABF8DFE188F29BA00E35A09 /* Sources */,
+				AABF8DFF188F29BA00E35A09 /* Frameworks */,
+				AABF8E00188F29BA00E35A09 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AABF8E09188F29BA00E35A09 /* PBXTargetDependency */,
+			);
+			name = MobileDeepLinkingTests;
+			productName = "MobileDeepLinking-iOSTests";
+			productReference = AABF8E02188F29BA00E35A09 /* MobileDeepLinkingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
 
-# Build the other platform.
-xcodebuild -project "${PROJECT_FILE_PATH}" -target "${TARGET_NAME}" -configuration "${CONFIGURATION}" -sdk ${SF_OTHER_PLATFORM}${SF_SDK_VERSION} BUILD_DIR="${BUILD_DIR}" OBJROOT="${OBJROOT}" BUILD_ROOT="${BUILD_ROOT}" SYMROOT="${SYMROOT}" $ACTION
+/* Begin PBXProject section */
+		AABF8DEA188F29B900E35A09 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = mobiledeeplinking;
+				TargetAttributes = {
+					AABF8E01188F29BA00E35A09 = {
+						TestTargetID = AABF8DF1188F29B900E35A09;
+					};
+				};
+			};
+			buildConfigurationList = AABF8DED188F29B900E35A09 /* Build configuration list for PBXProject "MobileDeepLinking" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = AABF8DE9188F29B900E35A09;
+			productRefGroup = AABF8DF3188F29B900E35A09 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = AABF8E70188F2D3400E35A09 /* Products */;
+					ProjectRef = AABF8E6F188F2D3400E35A09 /* MobileDeepLinkingDemo.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				AABF8DF1188F29B900E35A09 /* MobileDeepLinking */,
+				AABF8E01188F29BA00E35A09 /* MobileDeepLinkingTests */,
+				AABF8E1E188F2C7300E35A09 /* Framework */,
+			);
+		};
+/* End PBXProject section */
 
-# Smash the two static libraries into one fat binary and store it in the .framework
-lipo -create "${BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}" "${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}" -output "${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}"
+/* Begin PBXReferenceProxy section */
+		AABF8E75188F2D3500E35A09 /* MobileDeepLinkingDemo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = MobileDeepLinkingDemo.app;
+			remoteRef = AABF8E74188F2D3500E35A09 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AABF8E77188F2D3500E35A09 /* MobileDeepLinkingDemoTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = MobileDeepLinkingDemoTests.xctest;
+			remoteRef = AABF8E76188F2D3500E35A09 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
-# Copy the binary to the other architecture folder to have a complete framework in both.
-cp -a "${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}" "${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}"
-</string>
-		</dict>
-		<key>AABF8E6F188F2D3400E35A09</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.pb-project</string>
-			<key>name</key>
-			<string>MobileDeepLinkingDemo.xcodeproj</string>
-			<key>path</key>
-			<string>MobileDeepLinkingDemo/MobileDeepLinkingDemo.xcodeproj</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>AABF8E70188F2D3400E35A09</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>AABF8E75188F2D3500E35A09</string>
-				<string>AABF8E77188F2D3500E35A09</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Products</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>AABF8E74188F2D3500E35A09</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>AABF8E6F188F2D3400E35A09</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>2</string>
-			<key>remoteGlobalIDString</key>
-			<string>AABF8E2E188F2D3400E35A09</string>
-			<key>remoteInfo</key>
-			<string>MobileDeepLinkingDemo</string>
-		</dict>
-		<key>AABF8E75188F2D3500E35A09</key>
-		<dict>
-			<key>fileType</key>
-			<string>wrapper.application</string>
-			<key>isa</key>
-			<string>PBXReferenceProxy</string>
-			<key>path</key>
-			<string>MobileDeepLinkingDemo.app</string>
-			<key>remoteRef</key>
-			<string>AABF8E74188F2D3500E35A09</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>AABF8E76188F2D3500E35A09</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>AABF8E6F188F2D3400E35A09</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>2</string>
-			<key>remoteGlobalIDString</key>
-			<string>AABF8E58188F2D3400E35A09</string>
-			<key>remoteInfo</key>
-			<string>MobileDeepLinkingDemoTests</string>
-		</dict>
-		<key>AABF8E77188F2D3500E35A09</key>
-		<dict>
-			<key>fileType</key>
-			<string>wrapper.cfbundle</string>
-			<key>isa</key>
-			<string>PBXReferenceProxy</string>
-			<key>path</key>
-			<string>MobileDeepLinkingDemoTests.xctest</string>
-			<key>remoteRef</key>
-			<string>AABF8E76188F2D3500E35A09</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>C7404A1DC1E84E8E918CE51B</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>name</key>
-			<string>Pods.xcconfig</string>
-			<key>path</key>
-			<string>Pods/Pods.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>DA68B68406084165BCFDB0C3</key>
-		<dict>
-			<key>fileRef</key>
-			<string>9EEB6824015A495E80B6F714</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>DFFF4D9F70DC4EB0BD224010</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>Copy Pods Resources</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>"${SRCROOT}/Pods/Pods-resources.sh"
-</string>
-			<key>showEnvVarsInLog</key>
-			<string>0</string>
-		</dict>
-	</dict>
-	<key>rootObject</key>
-	<string>AABF8DEA188F29B900E35A09</string>
-</dict>
-</plist>
+/* Begin PBXResourcesBuildPhase section */
+		AABF8E00188F29BA00E35A09 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA94CBFD18906594005A2855 /* MobileDeepLinkingConfig.json in Resources */,
+				AABF8E10188F29BA00E35A09 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0C4D215A1AC44BF79D1B44BE /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AABF8E1D188F2BE300E35A09 /* Prepare Framework */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Prepare Framework";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nmkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"\n\n# Link the \"Current\" version to \"A\"\n/bin/ln -sfh A \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Headers\"\n/bin/ln -sfh \"Versions/Current/${PRODUCT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}\"\n\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"";
+		};
+		AABF8E24188F2C8500E35A09 /* Build Fat Binary */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build Fat Binary";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nset +u\n# Avoid recursively calling this script.\nif [[ $SF_MASTER_SCRIPT_RUNNING ]]\nthen\nexit 0\nfi\nset -u\nexport SF_MASTER_SCRIPT_RUNNING=1\n\nSF_TARGET_NAME=${PROJECT_NAME}\nSF_EXECUTABLE_PATH=\"lib${SF_TARGET_NAME}.a\"\nSF_WRAPPER_NAME=\"${SF_TARGET_NAME}.framework\"\n\n# The following conditionals come from\n# https://github.com/kstenerud/iOS-Universal-Framework\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\nSF_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\nSF_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SF_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\nSF_OTHER_PLATFORM=iphonesimulator\nelse\nSF_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$SF_SDK_PLATFORM$ ]]\nthen\nSF_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${SF_OTHER_PLATFORM}\"\nelse\necho \"Could not find platform name from build products directory: $BUILT_PRODUCTS_DIR\"\nexit 1\nfi\n\n# Build the other platform.\nxcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${SF_OTHER_PLATFORM}${SF_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" OBJROOT=\"${OBJROOT}\" BUILD_ROOT=\"${BUILD_ROOT}\" SYMROOT=\"${SYMROOT}\" $ACTION\n\n# Smash the two static libraries into one fat binary and store it in the .framework\nlipo -create \"${BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" -output \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\"\n\n# Copy the binary to the other architecture folder to have a complete framework in both.\ncp -a \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\"\n";
+		};
+		DFFF4D9F70DC4EB0BD224010 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AABF8DEE188F29B900E35A09 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AABF8DFD188F29B900E35A09 /* MobileDeepLinking.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AABF8DFE188F29BA00E35A09 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AABF8E12188F29BA00E35A09 /* MatcherTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AABF8E09188F29BA00E35A09 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AABF8DF1188F29B900E35A09 /* MobileDeepLinking */;
+			targetProxy = AABF8E08188F29BA00E35A09 /* PBXContainerItemProxy */;
+		};
+		AABF8E23188F2C7B00E35A09 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AABF8DF1188F29B900E35A09 /* MobileDeepLinking */;
+			targetProxy = AABF8E22188F2C7B00E35A09 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AABF8E0E188F29BA00E35A09 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AABF8E0F188F29BA00E35A09 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AABF8E13188F29BA00E35A09 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		AABF8E14188F29BA00E35A09 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AABF8E16188F29BA00E35A09 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7404A1DC1E84E8E918CE51B /* Pods.xcconfig */;
+			buildSettings = {
+				DEAD_CODE_STRIPPING = NO;
+				DSTROOT = /tmp/MobileDeepLinking_iOS.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MobileDeepLinking-iOS/MobileDeepLinking-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = MobileDeepLinking;
+				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
+				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
+			};
+			name = Debug;
+		};
+		AABF8E17188F29BA00E35A09 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7404A1DC1E84E8E918CE51B /* Pods.xcconfig */;
+			buildSettings = {
+				DEAD_CODE_STRIPPING = NO;
+				DSTROOT = /tmp/MobileDeepLinking_iOS.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MobileDeepLinking-iOS/MobileDeepLinking-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = MobileDeepLinking;
+				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
+				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
+			};
+			name = Release;
+		};
+		AABF8E19188F29BA00E35A09 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MobileDeepLinking-iOS/MobileDeepLinking-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "MobileDeepLinking-iOSTests/MobileDeepLinkingTests-Info.plist";
+				PRODUCT_NAME = MobileDeepLinkingTests;
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		AABF8E1A188F29BA00E35A09 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MobileDeepLinking-iOS/MobileDeepLinking-Prefix.pch";
+				INFOPLIST_FILE = "MobileDeepLinking-iOSTests/MobileDeepLinkingTests-Info.plist";
+				PRODUCT_NAME = MobileDeepLinkingTests;
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+		AABF8E20188F2C7400E35A09 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		AABF8E21188F2C7400E35A09 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AABF8DED188F29B900E35A09 /* Build configuration list for PBXProject "MobileDeepLinking" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AABF8E13188F29BA00E35A09 /* Debug */,
+				AABF8E14188F29BA00E35A09 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AABF8E15188F29BA00E35A09 /* Build configuration list for PBXNativeTarget "MobileDeepLinking" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AABF8E16188F29BA00E35A09 /* Debug */,
+				AABF8E17188F29BA00E35A09 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AABF8E18188F29BA00E35A09 /* Build configuration list for PBXNativeTarget "MobileDeepLinkingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AABF8E19188F29BA00E35A09 /* Debug */,
+				AABF8E1A188F29BA00E35A09 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AABF8E1F188F2C7400E35A09 /* Build configuration list for PBXAggregateTarget "Framework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AABF8E20188F2C7400E35A09 /* Debug */,
+				AABF8E21188F2C7400E35A09 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AABF8DEA188F29B900E35A09 /* Project object */;
+}

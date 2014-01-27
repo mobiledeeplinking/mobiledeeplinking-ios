@@ -18,6 +18,7 @@ NSString *LOGGING_JSON_NAME = @"logging";
 NSString *DEFAULT_ROUTE_JSON_NAME = @"defaultRoute";
 NSString *ROUTE_PARAMS_JSON_NAME = @"routeParameters";
 NSString *REQUIRED_JSON_NAME = @"required";
+NSString *REGEX_JSON_NAME = @"regex";
 
 @implementation MobileDeepLinking
 {
@@ -88,69 +89,175 @@ NSString *REQUIRED_JSON_NAME = @"required";
 * This method should be called in the application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 * function in AppDelegate.m.
 *
-* @customUrl - The NSURL that comes in openURL in the above function.
+* @deeplink - The NSURL that comes in openURL in the above function.
 */
-- (void)routeUsingUrl:(NSURL *)customUrl
+- (void)routeUsingUrl:(NSURL *)deeplink
 {
     NSDictionary *routes = [config objectForKey:ROUTES_JSON_NAME];
     NSString *storyboardName = [config objectForKey:STORYBOARD_JSON_NAME];
     NSError *error = nil;
 
     // base case
-    if ([[customUrl path] isEqualToString:@"/"])
+    if ([[deeplink path] isEqualToString:@"/"])
     {
         if (loggingEnabled)
-        {NSLog(@"No Routes Match.");}
-        [self routeToDefaultRoute];
+        {
+            NSLog(@"No Routes Match.");
+        }
+        [self routeToDefault];
     }
 
+    NSMutableDictionary *routeParameterValues = nil;
     for (id route in routes)
     {
-        if ([self matchCustomUrlWithRoute:route url:customUrl])
+        routeParameterValues = [[NSMutableDictionary alloc] init];
+        NSDictionary *routeOptions = [routes objectForKey:route];
+        if ([self matchDeeplink:route routeOptions:routeOptions deeplink:deeplink results:routeParameterValues error:&error])
         {
-            NSDictionary *routeOptions = [routes objectForKey:route];
-            NSDictionary *routeParameterValues = [self getRouteParameterValuesWithRoute:route routeOptions:routeOptions url:customUrl error:&error];
-            if (routeParameterValues == nil)
+            if (routeParameterValues == nil && error != nil)
             {
-                if (error != nil)
+                if (loggingEnabled)
                 {
-                    if (loggingEnabled)
-                    {NSLog(@"Error Getting routeParameterValues: %@", error.localizedDescription);};
-                    [self routeToDefaultRoute];
+                    NSLog(@"Error Getting routeParameterValues: %@", error.localizedDescription);
                 }
+                [self routeToDefault];
             }
 
             BOOL success = [self handleRouteWithOptions:routeOptions params:routeParameterValues storyboard:storyboardName];
             if (success == NO)
             {
                 if (loggingEnabled)
-                {NSLog(@"Error when handling route: %@", error.localizedDescription);};
-                [self routeToDefaultRoute];
+                {
+                    NSLog(@"Error when handling route: %@", error.localizedDescription);
+                }
+                [self routeToDefault];
             }
             return;
         }
     }
 
-    // adjust customUrl
-    NSURL *trimmedCustomUrl = [self getTrimmedCustomUrl:customUrl];
-    [self routeUsingUrl:trimmedCustomUrl];
+    // trim deeplink
+    [self routeUsingUrl:[self trimDeeplink:deeplink]];
+}
+
+/**
+* Match the incoming deeplink on the route options in the JSON. If path or query parameters are encountered, run validation and place
+* the result into the NSDictionary * results.
+*/
+- (BOOL)matchDeeplink:(NSString *)route routeOptions:(NSDictionary *)routeOptions deeplink:(NSURL *)deeplink results:(NSMutableDictionary *)results error:(NSError **)error
+{
+    NSDictionary *requiredRouteParameterValues = [self getRequiredRouteParameterValues:routeOptions];
+    BOOL pathMatchSuccess = [self matchPathParameters:route routeOptions:routeOptions deeplink:deeplink results:results error:error];
+    BOOL queryParametersSuccess = [self matchQueryParameters:[deeplink query] routeOptions:routeOptions intoDictionary:results error:error];
+
+    if (pathMatchSuccess == NO || queryParametersSuccess == NO)
+    {
+        return NO;
+    }
+
+    for (NSString *requiredValueKey in requiredRouteParameterValues)
+    {
+        if ([requiredRouteParameterValues objectForKey:requiredValueKey] == nil)
+        {
+            return NO;
+        }
+    }
+
+    return YES;
+}
+
+/**
+* Match incoming deeplink's path parameters. If wildcard (:path) is encountered, run validation on it and place
+* the result into the NSDictionary * results.
+*/
+- (BOOL)matchPathParameters:(NSString *)route routeOptions:(NSDictionary *)routeOptions deeplink:(NSURL *)deeplink results:(NSMutableDictionary *)results error:(NSError **)error
+{
+    // routeDefinition: host/routeDefinition/path1?query=string&query2=string
+    NSMutableArray *routeComponents = [NSMutableArray arrayWithArray:[route componentsSeparatedByString:@"/"]];
+    NSMutableArray *deeplinkComponents = [NSMutableArray arrayWithArray:[[deeplink path] componentsSeparatedByString:@"/"]];
+
+    // [url path] returns /somePath, so componentsSeparatedByString will return @"" as the first element.
+    [deeplinkComponents removeObject:@""];
+
+    // if route starts with a host.
+    if (![route hasPrefix:@"/"])
+    {
+        NSString *host = [deeplink host];
+        if (![[routeComponents objectAtIndex:0] isEqualToString:host])
+        {
+            return NO;
+        }
+        [routeComponents removeObjectAtIndex:0];
+    }
+
+    if ([routeComponents count] != [deeplinkComponents count])
+    {
+        return NO;
+    }
+
+    NSString *routeComponent = nil;
+    NSString *deeplinkComponent = nil;
+    for (int i = 0; i < [routeComponents count]; i++)
+    {
+        routeComponent = routeComponents[i];
+        deeplinkComponent = deeplinkComponents[i];
+        if (![routeComponent isEqualToString:deeplinkComponent])
+        {
+            if ([routeComponent hasPrefix:@":"])
+            {
+                NSString *routeComponentName = [routeComponent substringFromIndex:1];
+                BOOL validationSuccess = [self validateRouteComponent:routeComponentName deeplink:deeplinkComponent routeOptions:routeOptions];
+                if (validationSuccess)
+                {
+                    [results setValue:deeplinkComponent forKey:routeComponentName];
+                }
+                else
+                {
+                    return NO;
+                }
+            }
+        }
+    }
+
+    return YES;
+}
+
+/**
+* Validate a path component (ie /:pathId) against regular expression defined in json.
+*/
+- (BOOL)validateRouteComponent:(NSString *)routeComponent deeplink:(NSString *)deeplinkComponent routeOptions:(NSDictionary *)routeOptions
+{
+    NSDictionary *routeParameters = [routeOptions objectForKey:ROUTE_PARAMS_JSON_NAME];
+    NSDictionary *pathComponentParameters = [routeParameters objectForKey:routeComponent];
+    NSString *regexString = [pathComponentParameters objectForKey:REGEX_JSON_NAME];
+    if (regexString != nil)
+    {
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexString options:0 error:nil];
+        if ([regex numberOfMatchesInString:deeplinkComponent options:0 range:NSMakeRange(0, [deeplinkComponent length])] == 0)
+        {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 #pragma mark - Private Helper Methods
 
-- (void)routeToDefaultRoute
+- (void)routeToDefault
 {
     if (loggingEnabled)
-    {NSLog(@"Routing to Default Route.");}
+    {
+        NSLog(@"Routing to Default Route.");
+    }
     [self handleRouteWithOptions:[config objectForKey:DEFAULT_ROUTE_JSON_NAME] params:nil storyboard:[config objectForKey:STORYBOARD_JSON_NAME]];
 }
 
 /**
 * This method trims off the last path component in an NSURL.
 */
-- (NSURL *)getTrimmedCustomUrl:(NSURL *)customUrl
+- (NSURL *)trimDeeplink:(NSURL *)deeplink
 {
-    NSMutableArray *pathComponents = [NSMutableArray arrayWithArray:[customUrl pathComponents]];
+    NSMutableArray *pathComponents = [NSMutableArray arrayWithArray:[deeplink pathComponents]];
     for (int i = [pathComponents count]; i >= 0; i--)
     {
         // remove any trailing slashes
@@ -173,13 +280,29 @@ NSString *REQUIRED_JSON_NAME = @"required";
         [pathString stringByAppendingString:pathComponents[i]];
     }
 
-    return [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@%@%@%@", [customUrl scheme], [customUrl host], pathString, [customUrl query]]];
+    return [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@%@%@%@", [deeplink scheme], [deeplink host], pathString, [deeplink query]]];
 }
 
 /**
 * Executes handlers and displays views.
 */
 - (bool)handleRouteWithOptions:(NSDictionary *)routeOptions params:(NSDictionary *)routeParams storyboard:(NSString *)storyboardName
+{
+    BOOL handlerSuccess = [self executeHandlers:routeOptions routeParams:routeParams];
+    BOOL success = [self displayView:routeOptions routeParams:routeParams storyboard:storyboardName];
+    if (!handlerSuccess || !success)
+    {
+        return NO;
+    }
+
+    return YES;
+}
+
+/**
+* Execute registered handlers. Note, modifying the routeParams dictionary in your blocks will persist on any
+* subsequent handler execution and upon view instantiation.
+*/
+- (BOOL)executeHandlers:(NSDictionary *)routeOptions routeParams:(NSDictionary *)routeParams
 {
     // Execute Handlers for Route
     if ([routeOptions objectForKey:HANDLERS_JSON_NAME] != nil)
@@ -191,12 +314,20 @@ NSString *REQUIRED_JSON_NAME = @"required";
             handlerBlock(routeParams);
         }
     }
+    return YES;
+}
+
+/**
+* Display View based on presence of storyboard, identifier, and class.
+*/
+- (BOOL)displayView:(NSDictionary *)routeOptions routeParams:(NSDictionary *)routeParams storyboard:(NSString *)storyboardName
+{
 
     // Display View for Route
     if ([routeOptions objectForKey:CLASS_JSON_NAME] != nil)
     {
         // construct view controller
-        id newViewController = [self buildViewControllerWithRouteOptions:routeOptions storyboard:storyboardName];
+        id newViewController = [self buildViewController:routeOptions storyboard:storyboardName];
         if (newViewController == nil)
         {
             return NO;
@@ -212,7 +343,9 @@ NSString *REQUIRED_JSON_NAME = @"required";
             if (valid == NO)
             {
                 if (loggingEnabled)
-                {NSLog(@"Validation error when setting key:%@. Reason:%@", routeParam, error.localizedDescription);}
+                {
+                    NSLog(@"Validation error when setting key:%@. Reason:%@", routeParam, error.localizedDescription);
+                }
                 return NO;
             }
 
@@ -236,7 +369,7 @@ NSString *REQUIRED_JSON_NAME = @"required";
 /**
 * Depending on the combination of storyboard, identifier, and class, build a view controller.
 */
-- (id)buildViewControllerWithRouteOptions:(NSDictionary *)routeOptions storyboard:(NSString *)storyboardName
+- (id)buildViewController:(NSDictionary *)routeOptions storyboard:(NSString *)storyboardName
 {
     if ([routeOptions objectForKey:STORYBOARD_JSON_NAME])
     {
@@ -249,7 +382,9 @@ NSString *REQUIRED_JSON_NAME = @"required";
     if ((storyboardName != nil) && (identifier != nil))
     {
         if (loggingEnabled)
-        {NSLog(@"Routing to %@.", [routeOptions objectForKey:IDENTIFIER_JSON_NAME]);}
+        {
+            NSLog(@"Routing to %@.", [routeOptions objectForKey:IDENTIFIER_JSON_NAME]);
+        }
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
         return [storyboard instantiateViewControllerWithIdentifier:[routeOptions objectForKey:IDENTIFIER_JSON_NAME]];
     }
@@ -257,14 +392,18 @@ NSString *REQUIRED_JSON_NAME = @"required";
     {
         // Create view controller with nib.
         if (loggingEnabled)
-        {NSLog(@"Routing to %@.", [routeOptions objectForKey:CLASS_JSON_NAME]);}
+        {
+            NSLog(@"Routing to %@.", [routeOptions objectForKey:CLASS_JSON_NAME]);
+        }
         return [[NSClassFromString([routeOptions objectForKey:CLASS_JSON_NAME]) alloc] initWithNibName:[routeOptions objectForKey:IDENTIFIER_JSON_NAME] bundle:nil];
     }
     else if (class != nil)
     {
         // Create a old-fashioned view controller without storyboard or nib.
         if (loggingEnabled)
-        {NSLog(@"Routing to %@.", [routeOptions objectForKey:CLASS_JSON_NAME]);}
+        {
+            NSLog(@"Routing to %@.", [routeOptions objectForKey:CLASS_JSON_NAME]);
+        }
         return [[NSClassFromString([routeOptions objectForKey:CLASS_JSON_NAME]) alloc] init];
     }
     else
@@ -273,30 +412,8 @@ NSString *REQUIRED_JSON_NAME = @"required";
     }
 }
 
-- (NSDictionary *)getRouteParameterValuesWithRoute:(NSString *)routeDefinition routeOptions:(NSDictionary *)routeOptions url:(NSURL *)customUrl error:(NSError **)error
-{
-    NSMutableDictionary *routeParameterValues = [[NSMutableDictionary alloc] init];
-    NSDictionary *requiredRouteParameterValues = [self getRequiredRouteParameterValuesFromRouteOptions:routeOptions];
-    BOOL pathParametersSuccess = [self parsePathParametersWithRouteDefinition:routeDefinition routeOptions:routeOptions url:customUrl intoDictionary:routeParameterValues error:error];
-    BOOL queryParametersSuccess = [self parseQueryParameters:[customUrl query] routeOptions:routeOptions intoDictionary:routeParameterValues error:error];
 
-    if (pathParametersSuccess == NO || queryParametersSuccess == NO)
-    {
-        return nil;
-    }
-
-    for (NSString *requiredValueKey in requiredRouteParameterValues)
-    {
-        if ([routeParameterValues objectForKey:requiredValueKey] == nil)
-        {
-            return nil;
-        }
-    }
-
-    return routeParameterValues;
-}
-
-- (NSDictionary *)getRequiredRouteParameterValuesFromRouteOptions:(NSDictionary *)routeOptions
+- (NSDictionary *)getRequiredRouteParameterValues:(NSDictionary *)routeOptions
 {
     NSDictionary *requiredRouteParameters = [[NSDictionary alloc] init];
     NSDictionary *routeParameters = [routeOptions objectForKey:ROUTE_PARAMS_JSON_NAME];
@@ -319,49 +436,6 @@ NSString *REQUIRED_JSON_NAME = @"required";
     return nil;
 }
 
-- (BOOL)parsePathParametersWithRouteDefinition:(NSString *)routeDefinition routeOptions:(NSDictionary *)routeOptions url:(NSURL *)customUrl
-                                intoDictionary:routeParameterValues error:(NSError **)error
-{
-    NSMutableArray *routeDefinitionComponents = [NSMutableArray arrayWithArray:[routeDefinition componentsSeparatedByString:@"/"]];
-    NSMutableArray *customUrlPathComponents = [NSMutableArray arrayWithArray:[[customUrl path] componentsSeparatedByString:@"/"]];
-    // [url path] returns /somePath, so componentsSeparatedByString will return @"" as the first element.
-    [customUrlPathComponents removeObject:@""];
-
-    if (![routeDefinition hasPrefix:@"/"])
-    {
-        [routeDefinitionComponents removeObjectAtIndex:0];
-    }
-
-    for (int i = 0; i < [routeDefinitionComponents count]; i++)
-    {
-        if ([routeDefinitionComponents[i] hasPrefix:@":"])
-        {
-            NSString *componentName = [routeDefinitionComponents[i] substringFromIndex:1];
-            NSDictionary *routeParameters = [routeOptions objectForKey:ROUTE_PARAMS_JSON_NAME];
-            if ([[routeParameters allKeys] containsObject:componentName])
-            {
-                [routeParameterValues setValue:customUrlPathComponents[i] forKey:componentName];
-            }
-            else
-            {
-                // No Route Parameter Options were defined for this path parameter
-                [routeParameterValues setValue:customUrlPathComponents[i] forKey:componentName];
-            }
-        }
-        else if ([routeDefinitionComponents[i] hasPrefix:@"{"] && [routeDefinitionComponents[i] hasSuffix:@"}"])
-        {
-            NSString *regexComponent = [[routeDefinitionComponents[i] substringToIndex:[routeDefinitionComponents[i] length]] substringFromIndex:1];
-            NSArray *regexNameAndValue = [regexComponent componentsSeparatedByString:@"="];
-            if ([regexNameAndValue count] == 2)
-            {
-                NSString *regexName = [regexComponent componentsSeparatedByString:@"="][0];
-                [routeParameterValues setValue:customUrlPathComponents[i] forKey:regexName];
-            }
-        }
-    }
-    return YES;
-}
-
 /**
 * Checks route options (which define accepted query parameters) against incoming query parameters.
 *
@@ -371,7 +445,7 @@ NSString *REQUIRED_JSON_NAME = @"required";
 *
 * Note, this does handle escaped query parameters.
 */
-- (BOOL)parseQueryParameters:(NSString *)queryString routeOptions:(NSDictionary *)routeOptions intoDictionary:(NSMutableDictionary *)routeParameterValues error:(NSError **)error
+- (BOOL)matchQueryParameters:(NSString *)queryString routeOptions:(NSDictionary *)routeOptions intoDictionary:(NSMutableDictionary *)routeParameterValues error:(NSError **)error
 {
     NSDictionary *routeParameters = [routeOptions objectForKey:ROUTE_PARAMS_JSON_NAME];
     NSArray *queryPairs = [queryString componentsSeparatedByString:@"&"];
@@ -391,75 +465,6 @@ NSString *REQUIRED_JSON_NAME = @"required";
             [routeParameterValues setValue:value forKey:name];
         }
     }
-    return YES;
-}
-
-- (BOOL)matchCustomUrlWithRoute:(NSString *)routeDefinition url:(NSURL *)customUrl
-{
-    // routeDefinition: host/routeDefinition/path1?query=string&query2=string
-    NSMutableArray *routeDefinitionComponents = [NSMutableArray arrayWithArray:[routeDefinition componentsSeparatedByString:@"/"]];
-    NSMutableArray *customUrlPathComponents = [NSMutableArray arrayWithArray:[[customUrl path] componentsSeparatedByString:@"/"]];
-
-    // [url path] returns /somePath, so componentsSeparatedByString will return @"" as the first element.
-    [customUrlPathComponents removeObject:@""];
-
-
-    if (![routeDefinition hasPrefix:@"/"])
-    {
-        NSString *host = [customUrl host];
-        if (![[routeDefinitionComponents objectAtIndex:0] isEqualToString:host])
-        {
-            return NO;
-        }
-        [routeDefinitionComponents removeObjectAtIndex:0];
-    }
-
-    if ([routeDefinitionComponents count] != [customUrlPathComponents count])
-    {
-        return NO;
-    }
-    else
-    {
-        NSString *routeDefinitionComponent = nil;
-        NSString *customUrlComponent = nil;
-        for (int i = 0; i < [routeDefinitionComponents count]; i++)
-        {
-            routeDefinitionComponent = routeDefinitionComponents[i];
-            customUrlComponent = customUrlPathComponents[i];
-            if (![routeDefinitionComponent isEqualToString:customUrlComponent])
-            {
-                // Check for path parameters with format :parameter
-                if (![routeDefinitionComponent hasPrefix:@":"])
-                {
-                    return NO;
-                }
-
-                // Check for Regexes in path with format {regex}
-                if ([routeDefinitionComponent hasPrefix:@"{"] && [routeDefinitionComponent hasSuffix:@"}"])
-                {
-                    NSString *regexComponent = [[routeDefinitionComponent substringToIndex:[routeDefinitionComponent length]] substringFromIndex:1];
-                    NSArray *regexNameAndValue = [regexComponent componentsSeparatedByString:@"="];
-                    if ([regexNameAndValue count] == 2)
-                    {
-                        NSString *regexString = [regexComponent componentsSeparatedByString:@"="][1];
-                        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexString options:0 error:nil];
-
-                        if ([regex numberOfMatchesInString:customUrlComponent options:0 range:NSMakeRange(0, [customUrlComponent length])] == 0)
-                        {
-                            return NO;
-                        }
-                    }
-                    else
-                    {
-                        if (loggingEnabled)
-                        {NSLog(@"Invalid Regex set for %@", routeDefinitionComponent);}
-                        return NO;
-                    }
-                }
-            }
-        }
-    }
-
     return YES;
 }
 

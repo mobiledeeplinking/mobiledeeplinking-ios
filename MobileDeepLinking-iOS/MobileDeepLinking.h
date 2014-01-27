@@ -15,6 +15,6 @@
 
 - (void)registerHandlerWithName:(NSString *)handlerName handler:(void (^)(NSDictionary *))handlerFunction;
 
-- (void)routeUsingUrl:(NSURL *)customUrl;
+- (void)routeUsingUrl:(NSURL *)deeplink;
 
 @end

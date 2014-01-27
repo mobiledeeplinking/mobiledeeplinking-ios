@@ -7,24 +7,28 @@
 
 @interface MobileDeepLinking ()
 
-- (NSDictionary *)getConfiguration;
+- (NSDictionary *)getConfiguration:(NSError **)error;
 
 - (void)handleRouteWithOptions:(NSDictionary *)routeOptions params:(NSDictionary *)routeParams storyboard:(NSString *)storyboardName;
 
-- (NSDictionary *)getRouteParameterValuesWithRoute:(id)routeDefinition routeOptions:(NSDictionary *)routeOptions url:(NSURL *)customUrl;
+- (id)buildViewController:(NSDictionary *)routeOptions storyboard:(NSString *)storyboardName;
 
-- (id)buildViewControllerWithRouteOptions:(NSDictionary *)routeOptions storyboard:(NSString *)storyboardName;
+- (BOOL)matchDeeplink:(NSString *)route routeOptions:(NSDictionary *)routeOptions deeplink:(NSURL *)deeplink results:(NSMutableDictionary *)results error:(NSError **)error;
 
-- (BOOL)matchCustomUrlWithRoute:(NSString *)routeDefinition url:(NSURL *)customUrl;
+- (BOOL)matchPathParameters:(NSString *)route routeOptions:(NSDictionary *)routeOptions deeplink:(NSURL *)deeplink results:(NSMutableDictionary *)results error:(NSError **)error;
 
-- (void)routeToDefaultRoute;
+- (BOOL)validateRouteComponent:(NSString *)routeComponent deeplink:(NSString *)deeplinkComponent routeOptions:(NSDictionary *)routeOptions;
 
-- (NSURL *)getTrimmedCustomUrl:(NSURL *)customUrl;
+- (void)routeToDefault;
 
-- (NSDictionary *)getRequiredRouteParameterValuesFromRouteOptions:(NSDictionary *)routeOptions;
+- (BOOL)executeHandlers:(NSDictionary *)routeOptions routeParams:(NSDictionary *)routeParams;
 
-- (BOOL)parsePathParametersWithRouteDefinition:(NSString *)routeDefinition routeOptions:(NSDictionary *)routeOptions url:(NSURL *)customUrl intoDictionary:routeParameterValues error:(NSError **)error;
+- (BOOL)displayView:(NSDictionary *)routeOptions routeParams:(NSDictionary *)routeParams storyboard:(NSString *)storyboardName;
 
-- (BOOL)parseQueryParameters:(NSString *)queryString routeOptions:(NSDictionary *)routeOptions intoDictionary:(NSMutableDictionary *)routeParameterValues error:(NSError **)error;
+- (NSURL *)trimDeeplink:(NSURL *)deeplink;
+
+- (NSDictionary *)getRequiredRouteParameterValues:(NSDictionary *)routeOptions;
+
+- (BOOL)matchQueryParameters:(NSString *)queryString routeOptions:(NSDictionary *)routeOptions intoDictionary:(NSMutableDictionary *)routeParameterValues error:(NSError **)error;
 
 @end
