@@ -148,7 +148,7 @@ NSString *REGEX_JSON_NAME = @"regex";
 {
     NSDictionary *requiredRouteParameterValues = [self getRequiredRouteParameterValues:routeOptions];
     BOOL pathMatchSuccess = [self matchPathParameters:route routeOptions:routeOptions deeplink:deeplink results:results error:error];
-    BOOL queryParametersSuccess = [self matchQueryParameters:[deeplink query] routeOptions:routeOptions intoDictionary:results error:error];
+    BOOL queryParametersSuccess = [self matchQueryParameters:[deeplink query] routeOptions:routeOptions result:results error:error];
 
     if (pathMatchSuccess == NO || queryParametersSuccess == NO)
     {
@@ -216,6 +216,10 @@ NSString *REGEX_JSON_NAME = @"regex";
                     return NO;
                 }
             }
+            else
+            {
+                return NO;
+            }
         }
     }
 
@@ -258,7 +262,7 @@ NSString *REGEX_JSON_NAME = @"regex";
 - (NSURL *)trimDeeplink:(NSURL *)deeplink
 {
     NSMutableArray *pathComponents = [NSMutableArray arrayWithArray:[deeplink pathComponents]];
-    for (int i = [pathComponents count]; i >= 0; i--)
+    for (int i = (int)[pathComponents count]; i >= 0; i--)
     {
         // remove any trailing slashes
         if ([pathComponents[i] isEqual:@"/"])
@@ -445,7 +449,7 @@ NSString *REGEX_JSON_NAME = @"regex";
 *
 * Note, this does handle escaped query parameters.
 */
-- (BOOL)matchQueryParameters:(NSString *)queryString routeOptions:(NSDictionary *)routeOptions intoDictionary:(NSMutableDictionary *)routeParameterValues error:(NSError **)error
+- (BOOL)matchQueryParameters:(NSString *)queryString routeOptions:(NSDictionary *)routeOptions result:(NSMutableDictionary *)routeParameterValues error:(NSError **)error
 {
     NSDictionary *routeParameters = [routeOptions objectForKey:ROUTE_PARAMS_JSON_NAME];
     NSArray *queryPairs = [queryString componentsSeparatedByString:@"&"];

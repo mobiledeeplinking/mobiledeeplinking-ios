@@ -32,8 +32,10 @@
 		AABF8E07188F29BA00E35A09 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AABF8E06188F29BA00E35A09 /* UIKit.framework */; };
 		AABF8E0A188F29BA00E35A09 /* libMobileDeepLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AABF8DF2188F29B900E35A09 /* libMobileDeepLinking.a */; };
 		AABF8E10188F29BA00E35A09 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AABF8E0E188F29BA00E35A09 /* InfoPlist.strings */; };
-		AABF8E12188F29BA00E35A09 /* MatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AABF8E11188F29BA00E35A09 /* MatcherTest.m */; };
+		AABF8E12188F29BA00E35A09 /* MatchDeeplinkTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AABF8E11188F29BA00E35A09 /* MatchDeeplinkTest.m */; };
 		AABF8E1C188F2AF700E35A09 /* MobileDeepLinking.h in Headers */ = {isa = PBXBuildFile; fileRef = AABF8DFA188F29B900E35A09 /* MobileDeepLinking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D0B16FC618972C9200A6E810 /* MatchQueryParameterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B16FC518972C9200A6E810 /* MatchQueryParameterTest.m */; };
+		DA0239F87B9A4D64990B952B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EEB6824015A495E80B6F714 /* libPods.a */; };
 		DA68B68406084165BCFDB0C3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EEB6824015A495E80B6F714 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -95,9 +97,10 @@
 		AABF8E06188F29BA00E35A09 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		AABF8E0D188F29BA00E35A09 /* MobileDeepLinkingTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MobileDeepLinkingTests-Info.plist"; sourceTree = "<group>"; };
 		AABF8E0F188F29BA00E35A09 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		AABF8E11188F29BA00E35A09 /* MatcherTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatcherTest.m; sourceTree = "<group>"; };
+		AABF8E11188F29BA00E35A09 /* MatchDeeplinkTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchDeeplinkTest.m; sourceTree = "<group>"; };
 		AABF8E6F188F2D3400E35A09 /* MobileDeepLinkingDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MobileDeepLinkingDemo.xcodeproj; path = MobileDeepLinkingDemo/MobileDeepLinkingDemo.xcodeproj; sourceTree = "<group>"; };
 		C7404A1DC1E84E8E918CE51B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		D0B16FC518972C9200A6E810 /* MatchQueryParameterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchQueryParameterTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +121,7 @@
 				AABF8E07188F29BA00E35A09 /* UIKit.framework in Frameworks */,
 				AABF8E0A188F29BA00E35A09 /* libMobileDeepLinking.a in Frameworks */,
 				AABF8E05188F29BA00E35A09 /* Foundation.framework in Frameworks */,
+				DA0239F87B9A4D64990B952B /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,7 +183,8 @@
 		AABF8E0B188F29BA00E35A09 /* MobileDeepLinkingTest */ = {
 			isa = PBXGroup;
 			children = (
-				AABF8E11188F29BA00E35A09 /* MatcherTest.m */,
+				AABF8E11188F29BA00E35A09 /* MatchDeeplinkTest.m */,
+				D0B16FC518972C9200A6E810 /* MatchQueryParameterTest.m */,
 				AABF8E0C188F29BA00E35A09 /* Supporting Files */,
 			);
 			name = MobileDeepLinkingTest;
@@ -245,6 +250,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AABF8E18188F29BA00E35A09 /* Build configuration list for PBXNativeTarget "MobileDeepLinkingTests" */;
 			buildPhases = (
+				5E22128E7C1743A2AAD8F0F3 /* Check Pods Manifest.lock */,
 				AABF8DFE188F29BA00E35A09 /* Sources */,
 				AABF8DFF188F29BA00E35A09 /* Frameworks */,
 				AABF8E00188F29BA00E35A09 /* Resources */,
@@ -343,6 +349,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		5E22128E7C1743A2AAD8F0F3 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		AABF8E1D188F2BE300E35A09 /* Prepare Framework */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -401,7 +422,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AABF8E12188F29BA00E35A09 /* MatcherTest.m in Sources */,
+				D0B16FC618972C9200A6E810 /* MatchQueryParameterTest.m in Sources */,
+				AABF8E12188F29BA00E35A09 /* MatchDeeplinkTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,6 +558,7 @@
 		};
 		AABF8E19188F29BA00E35A09 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7404A1DC1E84E8E918CE51B /* Pods.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -549,6 +572,10 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
 				INFOPLIST_FILE = "MobileDeepLinking-iOSTests/MobileDeepLinkingTests-Info.plist";
 				PRODUCT_NAME = MobileDeepLinkingTests;
 				WRAPPER_EXTENSION = xctest;
@@ -557,6 +584,7 @@
 		};
 		AABF8E1A188F29BA00E35A09 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7404A1DC1E84E8E918CE51B /* Pods.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -566,6 +594,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MobileDeepLinking-iOS/MobileDeepLinking-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
 				INFOPLIST_FILE = "MobileDeepLinking-iOSTests/MobileDeepLinkingTests-Info.plist";
 				PRODUCT_NAME = MobileDeepLinkingTests;
 				WRAPPER_EXTENSION = xctest;
