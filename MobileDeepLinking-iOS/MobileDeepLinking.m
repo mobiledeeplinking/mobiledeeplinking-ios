@@ -52,7 +52,7 @@ NSString *REGEX_JSON_NAME = @"regex";
             NSLog(@"MobileDeepLinking configuration file error: %@", error);
             return nil;
         }
-        loggingEnabled = (BOOL) [config objectForKey:LOGGING_JSON_NAME];
+        loggingEnabled = ([[config objectForKey:LOGGING_JSON_NAME] isEqualToString:@"true"]);
     }
     return self;
 }
@@ -98,18 +98,20 @@ NSString *REGEX_JSON_NAME = @"regex";
     NSError *error = nil;
 
     // base case
-    if ([[deeplink path] isEqualToString:@"/"])
+    if ([[deeplink path] isEqualToString:@"/"] || [[deeplink path] isEqualToString:@""] || [deeplink path] == nil)
     {
         if (loggingEnabled)
         {
             NSLog(@"No Routes Match.");
         }
         [self routeToDefault];
+        return;
     }
 
     NSMutableDictionary *routeParameterValues = nil;
     for (id route in routes)
     {
+        error = nil;
         routeParameterValues = [[NSMutableDictionary alloc] init];
         NSDictionary *routeOptions = [routes objectForKey:route];
         if ([self matchDeeplink:route routeOptions:routeOptions deeplink:deeplink results:routeParameterValues error:&error])
@@ -121,23 +123,32 @@ NSString *REGEX_JSON_NAME = @"regex";
                     NSLog(@"Error Getting routeParameterValues: %@", error.localizedDescription);
                 }
                 [self routeToDefault];
+                return;
             }
 
-            BOOL success = [self handleRouteWithOptions:routeOptions params:routeParameterValues storyboard:storyboardName];
-            if (success == NO)
+            BOOL success = [self handleRouteWithOptions:routeOptions params:routeParameterValues storyboard:storyboardName error:&error];
+            if (!success)
             {
                 if (loggingEnabled)
                 {
                     NSLog(@"Error when handling route: %@", error.localizedDescription);
                 }
                 [self routeToDefault];
+                return;
             }
             return;
+        }
+        else
+        {
+            if (error != nil && loggingEnabled)
+            {
+                NSLog(@"Route did not match: %@", error.localizedDescription);
+            }
         }
     }
 
     // trim deeplink
-    [self routeUsingUrl:[self trimDeeplink:deeplink]];
+    return [self routeUsingUrl:[self trimDeeplink:deeplink]];
 }
 
 #pragma mark - Private Helper Methods
@@ -148,23 +159,38 @@ NSString *REGEX_JSON_NAME = @"regex";
 */
 - (BOOL)matchDeeplink:(NSString *)route routeOptions:(NSDictionary *)routeOptions deeplink:(NSURL *)deeplink results:(NSMutableDictionary *)results error:(NSError **)error
 {
-    NSDictionary *requiredRouteParameterValues = [self getRequiredRouteParameterValues:routeOptions];
     BOOL pathMatchSuccess = [self matchPathParameters:route routeOptions:routeOptions deeplink:deeplink results:results error:error];
-    BOOL queryParametersSuccess = [self matchQueryParameters:[deeplink query] routeOptions:routeOptions result:results error:error];
-
-    if (pathMatchSuccess == NO || queryParametersSuccess == NO)
+    if (pathMatchSuccess == NO)
     {
         return NO;
     }
 
+    BOOL queryParametersSuccess = [self matchQueryParameters:[deeplink query] routeOptions:routeOptions result:results error:error];
+    if (queryParametersSuccess == NO)
+    {
+        return NO;
+    }
+
+    BOOL requiredRouteParameterSuccess = [self checkForRequiredRouteParameters:routeOptions extractedResults:results error:error];
+    if (requiredRouteParameterSuccess == NO)
+    {
+        return NO;
+    }
+
+    return YES;
+}
+
+- (BOOL)checkForRequiredRouteParameters:(NSDictionary *)routeOptions extractedResults:(NSDictionary *)results error:(NSError **)error
+{
+    NSDictionary *requiredRouteParameterValues = [self getRequiredRouteParameterValues:routeOptions];
     for (NSString *requiredValueKey in requiredRouteParameterValues)
     {
-        if ([requiredRouteParameterValues objectForKey:requiredValueKey] == nil)
+        if ([results objectForKey:requiredValueKey] == nil)
         {
+            [self setError:error withMessage:[NSString stringWithFormat:@"%@ route parameter is missing.", requiredValueKey]];
             return NO;
         }
     }
-
     return YES;
 }
 
@@ -215,6 +241,7 @@ NSString *REGEX_JSON_NAME = @"regex";
                 }
                 else
                 {
+                    [self setError:error withMessage:[NSString stringWithFormat:@"Validation for %@ failed.", routeComponentName]];
                     return NO;
                 }
             }
@@ -259,7 +286,7 @@ NSString *REGEX_JSON_NAME = @"regex";
     {
         NSLog(@"Routing to Default Route.");
     }
-    [self handleRouteWithOptions:[config objectForKey:DEFAULT_ROUTE_JSON_NAME] params:nil storyboard:[config objectForKey:STORYBOARD_JSON_NAME]];
+    [self handleRouteWithOptions:[config objectForKey:DEFAULT_ROUTE_JSON_NAME] params:nil storyboard:[config objectForKey:STORYBOARD_JSON_NAME] error:nil];
 }
 
 /**
@@ -300,11 +327,16 @@ NSString *REGEX_JSON_NAME = @"regex";
 /**
 * Executes handlers and displays views.
 */
-- (bool)handleRouteWithOptions:(NSDictionary *)routeOptions params:(NSDictionary *)routeParams storyboard:(NSString *)storyboardName
+- (bool)handleRouteWithOptions:(NSDictionary *)routeOptions params:(NSDictionary *)routeParams storyboard:(NSString *)storyboardName error:(NSError **)error
 {
-    BOOL handlerSuccess = [self executeHandlers:routeOptions routeParams:routeParams];
-    BOOL success = [self displayView:routeOptions routeParams:routeParams storyboard:storyboardName];
-    if (!handlerSuccess || !success)
+    BOOL handlerSuccess = [self executeHandlers:routeOptions routeParams:routeParams error:error];
+    if (!handlerSuccess)
+    {
+        return NO;
+    }
+
+    BOOL displayViewSuccess = [self displayView:routeOptions routeParams:routeParams storyboard:storyboardName error:error];
+    if (!displayViewSuccess)
     {
         return NO;
     }
@@ -316,7 +348,7 @@ NSString *REGEX_JSON_NAME = @"regex";
 * Execute registered handlers. Note, modifying the routeParams dictionary in your blocks will persist on any
 * subsequent handler execution and upon view instantiation.
 */
-- (BOOL)executeHandlers:(NSDictionary *)routeOptions routeParams:(NSDictionary *)routeParams
+- (BOOL)executeHandlers:(NSDictionary *)routeOptions routeParams:(NSDictionary *)routeParams error:(NSError **)error
 {
     // Execute Handlers for Route
     if ([routeOptions objectForKey:HANDLERS_JSON_NAME] != nil)
@@ -324,8 +356,16 @@ NSString *REGEX_JSON_NAME = @"regex";
         NSArray *routeHandlers = [routeOptions objectForKey:HANDLERS_JSON_NAME];
         for (int i = 0; i < [routeHandlers count]; i++)
         {
-            void(^handlerBlock)(NSDictionary *) = [handlers objectForKey:routeHandlers[i]];
-            handlerBlock(routeParams);
+            if ([handlers objectForKey:routeHandlers[i]] != nil)
+            {
+                void(^handlerBlock)(NSDictionary *) = [handlers objectForKey:routeHandlers[i]];
+                handlerBlock(routeParams);
+            }
+            else
+            {
+                [self setError:error withMessage:[NSString stringWithFormat:@"Handler %@ has not been registered with the MobileDeepLinking library.", routeHandlers[i]]];
+                return NO;
+            }
         }
     }
     return YES;
@@ -334,28 +374,25 @@ NSString *REGEX_JSON_NAME = @"regex";
 /**
 * Display View based on presence of storyboard, identifier, and class.
 */
-- (BOOL)displayView:(NSDictionary *)routeOptions routeParams:(NSDictionary *)routeParams storyboard:(NSString *)storyboardName
+- (BOOL)displayView:(NSDictionary *)routeOptions routeParams:(NSDictionary *)routeParams storyboard:(NSString *)storyboardName error:(NSError **)error
 {
-
-    // Display View for Route
-    if ([routeOptions objectForKey:CLASS_JSON_NAME] != nil)
+    // construct view controller
+    id newViewController = [self buildViewController:routeOptions storyboard:storyboardName];
+    if (!newViewController)
     {
-        // construct view controller
-        id newViewController = [self buildViewController:routeOptions storyboard:storyboardName];
-        if (newViewController == nil)
-        {
-            return NO;
-        }
-
-        BOOL success = [self setPropertiesOnViewController:newViewController routeParams:routeParams];
-        if (success == NO)
-        {
-            return NO;
-        }
-
-        // push view controller
-        [[UIApplication sharedApplication] keyWindow].rootViewController = newViewController;
+        [self setError:error withMessage:@"Building view controller failed. Are you sure you're setting the appropriate json parameters for your type of view (storyboard, nib, neither)?"];
+        return NO;
     }
+
+    BOOL success = [self setPropertiesOnViewController:newViewController routeParams:routeParams];
+    if (!success)
+    {
+        [self setError:error withMessage:[NSString stringWithFormat:@"Setting properties on %@ failed.", NSStringFromClass([newViewController class])]];
+        return NO;
+    }
+
+    // push view controller
+    [[UIApplication sharedApplication] keyWindow].rootViewController = newViewController;
     return YES;
 }
 
@@ -377,14 +414,24 @@ NSString *REGEX_JSON_NAME = @"regex";
             return NO;
         }
 
-        // check to see if valueToValidate has changed after validation
-        if ([valueToValidate isEqual:[routeParams objectForKey:routeParam]])
+        @try
         {
-            [viewController setValue:[routeParams objectForKey:routeParam] forKey:routeParam];
+            // check to see if valueToValidate has changed after validation
+            if ([valueToValidate isEqual:[routeParams objectForKey:routeParam]])
+            {
+                [viewController setValue:[routeParams objectForKey:routeParam] forKey:routeParam];
+            }
+            else
+            {
+                [viewController setValue:valueToValidate forKey:routeParam];
+            }
         }
-        else
+        @catch (NSException *e)
         {
-            [viewController setValue:valueToValidate forKey:routeParam];
+            if (loggingEnabled)
+            {
+                NSLog(@"Unable to set property: %@ on %@.", routeParam, NSStringFromClass([viewController class]));
+            }
         }
     }
     return YES;
@@ -403,7 +450,7 @@ NSString *REGEX_JSON_NAME = @"regex";
     NSString *identifier = [routeOptions objectForKey:IDENTIFIER_JSON_NAME];
     NSString *class = [routeOptions objectForKey:CLASS_JSON_NAME];
 
-    if ((storyboardName != nil) && (identifier != nil))
+    if (([storyboardName length] != 0) && ([identifier length] != 0))
     {
         if (loggingEnabled)
         {
@@ -412,7 +459,7 @@ NSString *REGEX_JSON_NAME = @"regex";
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
         return [storyboard instantiateViewControllerWithIdentifier:[routeOptions objectForKey:IDENTIFIER_JSON_NAME]];
     }
-    else if ((class != nil) && (identifier != nil))
+    else if (([class length] != 0) && ([identifier length] != 0))
     {
         // Create view controller with nib.
         if (loggingEnabled)
@@ -421,7 +468,7 @@ NSString *REGEX_JSON_NAME = @"regex";
         }
         return [[NSClassFromString([routeOptions objectForKey:CLASS_JSON_NAME]) alloc] initWithNibName:[routeOptions objectForKey:IDENTIFIER_JSON_NAME] bundle:nil];
     }
-    else if (class != nil)
+    else if ([class length] != 0)
     {
         // Create a old-fashioned view controller without storyboard or nib.
         if (loggingEnabled)
@@ -446,7 +493,7 @@ NSString *REGEX_JSON_NAME = @"regex";
         NSDictionary *routeParameterOptions = [routeParameters objectForKey:routeParameter];
         if ([[routeParameterOptions objectForKey:REQUIRED_JSON_NAME] isEqual:@"true"])
         {
-            [requiredRouteParameters setValue:@NO forKey:routeParameter];
+            [requiredRouteParameters setValue:@YES forKey:routeParameter];
         }
     }
 
@@ -488,11 +535,25 @@ NSString *REGEX_JSON_NAME = @"regex";
             }
             else
             {
+                [self setError:error withMessage:@"Query Parameter Regex checking failed."];
                 return NO;
             }
         }
     }
     return YES;
+}
+
+- (void)setError:(NSError **)error withMessage:(NSString *)message
+{
+    if (error)
+    {
+        NSDictionary *userInfo = @{
+                NSLocalizedDescriptionKey : NSLocalizedString(message, nil)
+        };
+        *error = [NSError errorWithDomain:@"MobileDeepLinkingErrorDomain"
+                                     code:-57
+                                 userInfo:userInfo];
+    }
 }
 
 - (void)dealloc

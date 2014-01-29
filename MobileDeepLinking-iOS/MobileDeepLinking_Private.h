@@ -10,13 +10,13 @@
 
 - (void)routeToDefault;
 
-- (void)handleRouteWithOptions:(NSDictionary *)routeOptions params:(NSDictionary *)routeParams storyboard:(NSString *)storyboardName;
+- (bool)handleRouteWithOptions:(NSDictionary *)routeOptions params:(NSDictionary *)routeParams storyboard:(NSString *)storyboardName error:(NSError **)error;
 
-- (BOOL)executeHandlers:(NSDictionary *)routeOptions routeParams:(NSDictionary *)routeParams;
+- (BOOL)executeHandlers:(NSDictionary *)routeOptions routeParams:(NSDictionary *)routeParams error:(NSError **)error;
 
 - (id)buildViewController:(NSDictionary *)routeOptions storyboard:(NSString *)storyboardName;
 
-- (BOOL)displayView:(NSDictionary *)routeOptions routeParams:(NSDictionary *)routeParams storyboard:(NSString *)storyboardName;
+- (BOOL)displayView:(NSDictionary *)routeOptions routeParams:(NSDictionary *)routeParams storyboard:(NSString *)storyboardName error:(NSError **)error;
 
 - (BOOL)setPropertiesOnViewController:(UIViewController *)viewController routeParams:(NSDictionary *)routeParams;
 
@@ -29,6 +29,8 @@
 - (NSMutableDictionary *)getRequiredRouteParameterValues:(NSDictionary *)routeOptions;
 
 - (BOOL)validateRouteComponent:(NSString *)name value:(NSString *)value routeOptions:(NSDictionary *)routeOptions;
+
+- (BOOL)checkForRequiredRouteParameters:(NSDictionary *)routeOptions extractedResults:(NSDictionary *)results error:(NSError **)error;
 
 - (NSURL *)trimDeeplink:(NSURL *)deeplink;
 

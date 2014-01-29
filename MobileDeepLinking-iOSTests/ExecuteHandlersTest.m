@@ -8,7 +8,9 @@
 
 #import <XCTest/XCTest.h>
 #import "MobileDeepLinking_Private.h"
+
 #define EXP_SHORTHAND
+
 #import <Expecta/Expecta.h>
 
 @interface ExecuteHandlersTest : XCTestCase
@@ -36,7 +38,7 @@
     }];
 
     NSMutableDictionary *routeParams = [[NSMutableDictionary alloc] init];
-    [mobileDeepLinking executeHandlers:routeOptions routeParams:routeParams];
+    [mobileDeepLinking executeHandlers:routeOptions routeParams:routeParams error:NULL ];
 
     NSMutableDictionary *expected = [[NSMutableDictionary alloc] initWithObjectsAndKeys:@"value", @"name", nil];
     expect(routeParams).to.equal(expected);
@@ -59,7 +61,7 @@
     }];
 
     NSMutableDictionary *routeParams = [[NSMutableDictionary alloc] init];
-    [mobileDeepLinking executeHandlers:routeOptions routeParams:routeParams];
+    [mobileDeepLinking executeHandlers:routeOptions routeParams:routeParams error:NULL ];
 
     NSMutableDictionary *expected = [[NSMutableDictionary alloc] initWithObjectsAndKeys:@"value2", @"name", nil];
     expect(routeParams).to.equal(expected);
@@ -82,7 +84,7 @@
     }];
 
     NSMutableDictionary *routeParams = [[NSMutableDictionary alloc] init];
-    [mobileDeepLinking executeHandlers:routeOptions routeParams:routeParams];
+    [mobileDeepLinking executeHandlers:routeOptions routeParams:routeParams error:NULL ];
 
     NSMutableDictionary *expected = [[NSMutableDictionary alloc] initWithObjectsAndKeys:@"value", @"name", nil];
     expect(routeParams).to.equal(expected);

@@ -7,7 +7,9 @@
 //
 
 #import <XCTest/XCTest.h>
+
 #define EXP_SHORTHAND
+
 #import <Expecta/Expecta.h>
 #import "MobileDeepLinking.h"
 #import "MobileDeepLinking_Private.h"
@@ -31,6 +33,7 @@
     results = [[NSMutableDictionary alloc] init];
 
 }
+
 - (void)tearDown
 {
     // Put teardown code here; it will be run once, after the last test case.

@@ -22,6 +22,7 @@
     MobileDeepLinking *mobileDeepLinking;
     NSDictionary *routeOptions;
     NSMutableDictionary *results;
+    NSError *error;
 }
 
 - (void)setUp
@@ -30,7 +31,7 @@
     mobileDeepLinking = [MobileDeepLinking sharedInstance];
     routeOptions = [[NSDictionary alloc] initWithObjectsAndKeys:@"routeParameters", [[NSDictionary alloc] init], nil];
     results = [[NSMutableDictionary alloc] init];
-
+    error = nil;
 }
 
 - (void)tearDown

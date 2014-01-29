@@ -3,15 +3,16 @@
 // Copyright (c) 2014 mobiledeeplinking. All rights reserved.
 //
 
-#import "ViewController2.h"
+#import "StoryBoardViewController.h"
 
 
-@implementation ViewController2
+@implementation StoryBoardViewController
 {
 
 }
 
 @synthesize dataId;
+@synthesize utmSource;
 
 - (void)viewDidLoad
 {

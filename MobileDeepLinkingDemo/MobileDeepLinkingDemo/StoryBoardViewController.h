@@ -6,7 +6,8 @@
 #import <Foundation/Foundation.h>
 
 
-@interface ViewController2 : UIViewController
+@interface StoryBoardViewController : UIViewController
 
 @property(nonatomic, strong) id dataId;
+@property(nonatomic, strong) id utmSource;
 @end

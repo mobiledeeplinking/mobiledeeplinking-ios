@@ -7,16 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5C593AB375A039BB32D6AD63 /* ViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C59369F0D18BA9037A28087 /* ViewController2.m */; };
+		5C593AB375A039BB32D6AD63 /* StoryBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C59369F0D18BA9037A28087 /* StoryBoardViewController.m */; };
+		AA81F543189966EB00EE8862 /* ViewControllerWithNib.m in Sources */ = {isa = PBXBuildFile; fileRef = AA81F541189966EB00EE8862 /* ViewControllerWithNib.m */; };
+		AA81F544189966EB00EE8862 /* ViewControllerWithNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA81F542189966EB00EE8862 /* ViewControllerWithNib.xib */; };
+		AA81F54818996C1A00EE8862 /* NonIBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA81F54718996C1A00EE8862 /* NonIBViewController.m */; };
 		AABF8E32188F2D3400E35A09 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AABF8E31188F2D3400E35A09 /* Foundation.framework */; };
 		AABF8E34188F2D3400E35A09 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AABF8E33188F2D3400E35A09 /* CoreGraphics.framework */; };
 		AABF8E36188F2D3400E35A09 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AABF8E35188F2D3400E35A09 /* UIKit.framework */; };
 		AABF8E3C188F2D3400E35A09 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AABF8E3A188F2D3400E35A09 /* InfoPlist.strings */; };
 		AABF8E3E188F2D3400E35A09 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AABF8E3D188F2D3400E35A09 /* main.m */; };
 		AABF8E42188F2D3400E35A09 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AABF8E41188F2D3400E35A09 /* AppDelegate.m */; };
-		AABF8E45188F2D3400E35A09 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AABF8E44188F2D3400E35A09 /* RootViewController.m */; };
 		AABF8E48188F2D3400E35A09 /* DataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AABF8E47188F2D3400E35A09 /* DataViewController.m */; };
-		AABF8E4B188F2D3400E35A09 /* ModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = AABF8E4A188F2D3400E35A09 /* ModelController.m */; };
 		AABF8E4E188F2D3400E35A09 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AABF8E4C188F2D3400E35A09 /* Main_iPhone.storyboard */; };
 		AABF8E51188F2D3400E35A09 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AABF8E4F188F2D3400E35A09 /* Main_iPad.storyboard */; };
 		AABF8E53188F2D3400E35A09 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AABF8E52188F2D3400E35A09 /* Images.xcassets */; };
@@ -40,8 +41,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5C59369F0D18BA9037A28087 /* ViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController2.m; sourceTree = "<group>"; };
-		5C593B9E3E10323A07BAB0CC /* ViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController2.h; sourceTree = "<group>"; };
+		5C59369F0D18BA9037A28087 /* StoryBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryBoardViewController.m; sourceTree = "<group>"; };
+		5C593B9E3E10323A07BAB0CC /* StoryBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryBoardViewController.h; sourceTree = "<group>"; };
+		AA81F540189966EB00EE8862 /* ViewControllerWithNib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerWithNib.h; sourceTree = "<group>"; };
+		AA81F541189966EB00EE8862 /* ViewControllerWithNib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerWithNib.m; sourceTree = "<group>"; };
+		AA81F542189966EB00EE8862 /* ViewControllerWithNib.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewControllerWithNib.xib; sourceTree = "<group>"; };
+		AA81F54618996C1A00EE8862 /* NonIBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonIBViewController.h; sourceTree = "<group>"; };
+		AA81F54718996C1A00EE8862 /* NonIBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonIBViewController.m; sourceTree = "<group>"; };
 		AABF8E2E188F2D3400E35A09 /* MobileDeepLinkingDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileDeepLinkingDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AABF8E31188F2D3400E35A09 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AABF8E33188F2D3400E35A09 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -52,12 +58,8 @@
 		AABF8E3F188F2D3400E35A09 /* MobileDeepLinkingDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MobileDeepLinkingDemo-Prefix.pch"; sourceTree = "<group>"; };
 		AABF8E40188F2D3400E35A09 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AABF8E41188F2D3400E35A09 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		AABF8E43188F2D3400E35A09 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		AABF8E44188F2D3400E35A09 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		AABF8E46188F2D3400E35A09 /* DataViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataViewController.h; sourceTree = "<group>"; };
 		AABF8E47188F2D3400E35A09 /* DataViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataViewController.m; sourceTree = "<group>"; };
-		AABF8E49188F2D3400E35A09 /* ModelController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelController.h; sourceTree = "<group>"; };
-		AABF8E4A188F2D3400E35A09 /* ModelController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelController.m; sourceTree = "<group>"; };
 		AABF8E4D188F2D3400E35A09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		AABF8E50188F2D3400E35A09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		AABF8E52188F2D3400E35A09 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -95,6 +97,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA81F5391899669A00EE8862 /* Storyboard Views */ = {
+			isa = PBXGroup;
+			children = (
+				5C593B9E3E10323A07BAB0CC /* StoryBoardViewController.h */,
+				5C59369F0D18BA9037A28087 /* StoryBoardViewController.m */,
+				AABF8E46188F2D3400E35A09 /* DataViewController.h */,
+				AABF8E47188F2D3400E35A09 /* DataViewController.m */,
+			);
+			name = "Storyboard Views";
+			sourceTree = "<group>";
+		};
+		AA81F53A189966B400EE8862 /* Nib Views */ = {
+			isa = PBXGroup;
+			children = (
+				AA81F540189966EB00EE8862 /* ViewControllerWithNib.h */,
+				AA81F541189966EB00EE8862 /* ViewControllerWithNib.m */,
+				AA81F542189966EB00EE8862 /* ViewControllerWithNib.xib */,
+			);
+			name = "Nib Views";
+			sourceTree = "<group>";
+		};
+		AA81F54518996C0300EE8862 /* Non-IB Views */ = {
+			isa = PBXGroup;
+			children = (
+				AA81F54618996C1A00EE8862 /* NonIBViewController.h */,
+				AA81F54718996C1A00EE8862 /* NonIBViewController.m */,
+			);
+			name = "Non-IB Views";
+			sourceTree = "<group>";
+		};
 		AABF8E25188F2D3300E35A09 = {
 			isa = PBXGroup;
 			children = (
@@ -129,20 +161,15 @@
 		AABF8E37188F2D3400E35A09 /* MobileDeepLinkingDemo */ = {
 			isa = PBXGroup;
 			children = (
+				AA81F54518996C0300EE8862 /* Non-IB Views */,
+				AA81F53A189966B400EE8862 /* Nib Views */,
+				AA81F5391899669A00EE8862 /* Storyboard Views */,
 				AABF8E40188F2D3400E35A09 /* AppDelegate.h */,
 				AABF8E41188F2D3400E35A09 /* AppDelegate.m */,
-				AABF8E43188F2D3400E35A09 /* RootViewController.h */,
-				AABF8E44188F2D3400E35A09 /* RootViewController.m */,
-				AABF8E46188F2D3400E35A09 /* DataViewController.h */,
-				AABF8E47188F2D3400E35A09 /* DataViewController.m */,
-				AABF8E49188F2D3400E35A09 /* ModelController.h */,
-				AABF8E4A188F2D3400E35A09 /* ModelController.m */,
 				AABF8E4C188F2D3400E35A09 /* Main_iPhone.storyboard */,
 				AABF8E4F188F2D3400E35A09 /* Main_iPad.storyboard */,
 				AABF8E52188F2D3400E35A09 /* Images.xcassets */,
 				AABF8E38188F2D3400E35A09 /* Supporting Files */,
-				5C593B9E3E10323A07BAB0CC /* ViewController2.h */,
-				5C59369F0D18BA9037A28087 /* ViewController2.m */,
 			);
 			path = MobileDeepLinkingDemo;
 			sourceTree = "<group>";
@@ -257,6 +284,7 @@
 				AABF8E53188F2D3400E35A09 /* Images.xcassets in Resources */,
 				AABF8E86188F333900E35A09 /* MobileDeepLinkingConfig.json in Resources */,
 				AABF8E4E188F2D3400E35A09 /* Main_iPhone.storyboard in Resources */,
+				AA81F544189966EB00EE8862 /* ViewControllerWithNib.xib in Resources */,
 				AABF8E3C188F2D3400E35A09 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,10 +306,10 @@
 			files = (
 				AABF8E48188F2D3400E35A09 /* DataViewController.m in Sources */,
 				AABF8E42188F2D3400E35A09 /* AppDelegate.m in Sources */,
-				AABF8E4B188F2D3400E35A09 /* ModelController.m in Sources */,
 				AABF8E3E188F2D3400E35A09 /* main.m in Sources */,
-				AABF8E45188F2D3400E35A09 /* RootViewController.m in Sources */,
-				5C593AB375A039BB32D6AD63 /* ViewController2.m in Sources */,
+				AA81F543189966EB00EE8862 /* ViewControllerWithNib.m in Sources */,
+				AA81F54818996C1A00EE8862 /* NonIBViewController.m in Sources */,
+				5C593AB375A039BB32D6AD63 /* StoryBoardViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

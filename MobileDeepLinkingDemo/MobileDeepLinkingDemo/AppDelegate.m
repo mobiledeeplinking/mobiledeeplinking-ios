@@ -13,14 +13,25 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[MobileDeepLinking sharedInstance] registerHandlerWithName:@"mutatorHandler" handler:^void(NSDictionary *params)
+    {
+        NSLog(@"mutatorHandler:");
+        for (NSString *param in params)
+        {
+            NSLog(@"%@: %@", param, [params objectForKey:param]);
+        }
+        [params setValue:@"handlerValue" forKey:@"handlerName"];
+    }];
+
     [[MobileDeepLinking sharedInstance] registerHandlerWithName:@"myHandler" handler:^void(NSDictionary *params)
     {
-        NSLog(@"In the block!");
+        NSLog(@"myHandler:");
         for (NSString *param in params)
         {
             NSLog(@"%@: %@", param, [params objectForKey:param]);
         }
     }];
+
     // Override point for customization after application launch.
     return YES;
 }

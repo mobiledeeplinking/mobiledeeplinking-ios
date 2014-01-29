@@ -8,7 +8,9 @@
 
 
 #import <XCTest/XCTest.h>
+
 #define EXP_SHORTHAND
+
 #import <Expecta/Expecta.h>
 #import "MobileDeepLinking.h"
 #import "MobileDeepLinking_Private.h"
@@ -35,9 +37,9 @@
 
 - (void)testGetRequiredRouteParameterValues
 {
-    NSMutableDictionary *expected = [[NSMutableDictionary alloc] initWithObjectsAndKeys:@NO, @"name", nil];
+    NSMutableDictionary *expected = [[NSMutableDictionary alloc] initWithObjectsAndKeys:@YES, @"name", nil];
     expect([mobileDeepLinking getRequiredRouteParameterValues:routeOptions])
-        .to.equal(expected);
+            .to.equal(expected);
 }
 
 - (void)testGetRequiredRouteParameterValuesWithoutAnyRequiredValues
@@ -49,7 +51,7 @@
 
     NSMutableDictionary *expected = [[NSMutableDictionary alloc] init];
     expect([mobileDeepLinking getRequiredRouteParameterValues:routeOptions])
-        .to.equal(expected);
+            .to.equal(expected);
 }
 
 - (void)testGetRequiredRouteParameterValuesWithoutAnyValues
@@ -61,7 +63,7 @@
 
     NSMutableDictionary *expected = [[NSMutableDictionary alloc] init];
     expect([mobileDeepLinking getRequiredRouteParameterValues:routeOptions])
-        .to.equal(expected);
+            .to.equal(expected);
 }
 
 @end

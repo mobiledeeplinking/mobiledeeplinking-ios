@@ -7,7 +7,9 @@
 //
 
 #import <XCTest/XCTest.h>
+
 #define EXP_SHORTHAND
+
 #import <Expecta/Expecta.h>
 #import "MobileDeepLinking.h"
 #import "MobileDeepLinking_Private.h"
@@ -32,7 +34,7 @@
     NSURL *url = [[NSURL alloc] initWithString:@"mdldemo://data/54?name=value&name1=value1"];
     NSURL *expected = [[NSURL alloc] initWithString:@"mdldemo://data?name=value&name1=value1"];
     expect([mobileDeepLinking trimDeeplink:url])
-        .to.equal(expected);
+            .to.equal(expected);
 }
 
 - (void)testTrimDeeplinkWithTrailingSlashes
@@ -40,7 +42,7 @@
     NSURL *url = [[NSURL alloc] initWithString:@"mdldemo://data/54/?name=value&name1=value1"];
     NSURL *expected = [[NSURL alloc] initWithString:@"mdldemo://data?name=value&name1=value1"];
     expect([mobileDeepLinking trimDeeplink:url])
-        .to.equal(expected);
+            .to.equal(expected);
 
 
     url = [[NSURL alloc] initWithString:@"mdldemo://data/54//////?name=value&name1=value1"];
@@ -54,7 +56,7 @@
     NSURL *url = [[NSURL alloc] initWithString:@"mdldemo://data?name=value&name1=value1"];
     NSURL *expected = [[NSURL alloc] initWithString:@"mdldemo://data?name=value&name1=value1"];
     expect([mobileDeepLinking trimDeeplink:url])
-        .to.equal(expected);
+            .to.equal(expected);
 }
 
 - (void)testTrimDeeplinkWithoutHostAndPath
@@ -62,7 +64,7 @@
     NSURL *url = [[NSURL alloc] initWithString:@"mdldemo://?name=value&name1=value1"];
     NSURL *expected = [[NSURL alloc] initWithString:@"mdldemo://?name=value&name1=value1"];
     expect([mobileDeepLinking trimDeeplink:url])
-        .to.equal(expected);
+            .to.equal(expected);
 }
 
 - (void)testTrimDeeplinkWithLongPath
@@ -70,7 +72,7 @@
     NSURL *url = [[NSURL alloc] initWithString:@"mdldemo://data/32/hello/there?name=value&name1=value1"];
     NSURL *expected = [[NSURL alloc] initWithString:@"mdldemo://data/32/hello?name=value&name1=value1"];
     expect([mobileDeepLinking trimDeeplink:url])
-        .to.equal(expected);
+            .to.equal(expected);
 }
 
 @end
