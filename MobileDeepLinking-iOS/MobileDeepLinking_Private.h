@@ -3,7 +3,6 @@
 */
 
 #import "MobileDeepLinking.h"
-#import <UIKit/UIKit.h>
 
 @interface MobileDeepLinking ()
 
@@ -19,15 +18,17 @@
 
 - (BOOL)displayView:(NSDictionary *)routeOptions routeParams:(NSDictionary *)routeParams storyboard:(NSString *)storyboardName;
 
+- (BOOL)setPropertiesOnViewController:(UIViewController *)viewController routeParams:(NSDictionary *)routeParams;
+
 - (BOOL)matchDeeplink:(NSString *)route routeOptions:(NSDictionary *)routeOptions deeplink:(NSURL *)deeplink results:(NSMutableDictionary *)results error:(NSError **)error;
 
 - (BOOL)matchPathParameters:(NSString *)route routeOptions:(NSDictionary *)routeOptions deeplink:(NSURL *)deeplink results:(NSMutableDictionary *)results error:(NSError **)error;
 
 - (BOOL)matchQueryParameters:(NSString *)queryString routeOptions:(NSDictionary *)routeOptions result:(NSMutableDictionary *)routeParameterValues error:(NSError **)error;
 
-- (NSDictionary *)getRequiredRouteParameterValues:(NSDictionary *)routeOptions;
+- (NSMutableDictionary *)getRequiredRouteParameterValues:(NSDictionary *)routeOptions;
 
-- (BOOL)validateRouteComponent:(NSString *)routeComponent deeplink:(NSString *)deeplinkComponent routeOptions:(NSDictionary *)routeOptions;
+- (BOOL)validateRouteComponent:(NSString *)name value:(NSString *)value routeOptions:(NSDictionary *)routeOptions;
 
 - (NSURL *)trimDeeplink:(NSURL *)deeplink;
 

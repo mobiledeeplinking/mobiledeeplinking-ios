@@ -140,6 +140,8 @@ NSString *REGEX_JSON_NAME = @"regex";
     [self routeUsingUrl:[self trimDeeplink:deeplink]];
 }
 
+#pragma mark - Private Helper Methods
+
 /**
 * Match the incoming deeplink on the route options in the JSON. If path or query parameters are encountered, run validation and place
 * the result into the NSDictionary * results.
@@ -206,7 +208,7 @@ NSString *REGEX_JSON_NAME = @"regex";
             if ([routeComponent hasPrefix:@":"])
             {
                 NSString *routeComponentName = [routeComponent substringFromIndex:1];
-                BOOL validationSuccess = [self validateRouteComponent:routeComponentName deeplink:deeplinkComponent routeOptions:routeOptions];
+                BOOL validationSuccess = [self validateRouteComponent:routeComponentName value:deeplinkComponent routeOptions:routeOptions];
                 if (validationSuccess)
                 {
                     [results setValue:deeplinkComponent forKey:routeComponentName];
@@ -227,25 +229,29 @@ NSString *REGEX_JSON_NAME = @"regex";
 }
 
 /**
-* Validate a path component (ie /:pathId) against regular expression defined in json.
+* Validate a route component (path or query parameter) against regular expression defined in json.
 */
-- (BOOL)validateRouteComponent:(NSString *)routeComponent deeplink:(NSString *)deeplinkComponent routeOptions:(NSDictionary *)routeOptions
+- (BOOL)validateRouteComponent:(NSString *)name value:(NSString *)value routeOptions:(NSDictionary *)routeOptions
 {
     NSDictionary *routeParameters = [routeOptions objectForKey:ROUTE_PARAMS_JSON_NAME];
-    NSDictionary *pathComponentParameters = [routeParameters objectForKey:routeComponent];
+    NSDictionary *pathComponentParameters = [routeParameters objectForKey:name];
     NSString *regexString = [pathComponentParameters objectForKey:REGEX_JSON_NAME];
     if (regexString != nil)
     {
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexString options:0 error:nil];
-        if ([regex numberOfMatchesInString:deeplinkComponent options:0 range:NSMakeRange(0, [deeplinkComponent length])] == 0)
+
+        NSArray *matches = [regex matchesInString:value options:0 range:NSMakeRange(0, [value length])];
+        if ([matches count] == 1)
+        {
+            return YES;
+        }
+        else
         {
             return NO;
         }
     }
     return YES;
 }
-
-#pragma mark - Private Helper Methods
 
 - (void)routeToDefault
 {
@@ -262,7 +268,7 @@ NSString *REGEX_JSON_NAME = @"regex";
 - (NSURL *)trimDeeplink:(NSURL *)deeplink
 {
     NSMutableArray *pathComponents = [NSMutableArray arrayWithArray:[deeplink pathComponents]];
-    for (int i = (int)[pathComponents count]; i >= 0; i--)
+    for (int i = ((int) [pathComponents count]) - 1; i >= 0; i--)
     {
         // remove any trailing slashes
         if ([pathComponents[i] isEqual:@"/"])
@@ -280,11 +286,15 @@ NSString *REGEX_JSON_NAME = @"regex";
     // build path string. Start at i = 1 because first element of pathComponents is always /
     for (int i = 1; i < [pathComponents count]; i++)
     {
-        [pathString stringByAppendingString:@"/"];
-        [pathString stringByAppendingString:pathComponents[i]];
+        pathString = [pathString stringByAppendingString:@"/"];
+        pathString = [pathString stringByAppendingString:pathComponents[i]];
     }
 
-    return [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@%@%@%@", [deeplink scheme], [deeplink host], pathString, [deeplink query]]];
+    return [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@://%@%@%@",
+                                                                    [deeplink scheme],
+                                                                    ([deeplink host]) ? [deeplink host] : @"",
+                                                                    pathString,
+                                                                    ([deeplink query]) ? [NSString stringWithFormat:@"?%@", [deeplink query]] : @""]];
 }
 
 /**
@@ -337,35 +347,45 @@ NSString *REGEX_JSON_NAME = @"regex";
             return NO;
         }
 
-        for (id routeParam in routeParams)
+        BOOL success = [self setPropertiesOnViewController:newViewController routeParams:routeParams];
+        if (success == NO)
         {
-            NSError *error = nil;
-            // Validation follows pattern described here: https://developer.apple.com/library/mac/documentation/cocoa/conceptual/KeyValueCoding/Articles/Validation.html
-            // User can create custom validators for their properties. If none exist, validateValue will return YES by default.
-            id valueToValidate = [routeParams objectForKey:routeParam];
-            BOOL valid = [newViewController validateValue:&valueToValidate forKey:routeParam error:&error];
-            if (valid == NO)
-            {
-                if (loggingEnabled)
-                {
-                    NSLog(@"Validation error when setting key:%@. Reason:%@", routeParam, error.localizedDescription);
-                }
-                return NO;
-            }
-
-            // check to see if valueToValidate has changed after validation
-            if ([valueToValidate isEqual:[routeParams objectForKey:routeParam]])
-            {
-                [newViewController setValue:[routeParams objectForKey:routeParam] forKey:routeParam];
-            }
-            else
-            {
-                [newViewController setValue:valueToValidate forKey:routeParam];
-            }
+            return NO;
         }
 
         // push view controller
         [[UIApplication sharedApplication] keyWindow].rootViewController = newViewController;
+    }
+    return YES;
+}
+
+- (BOOL)setPropertiesOnViewController:(UIViewController *)viewController routeParams:(NSDictionary *)routeParams
+{
+    for (id routeParam in routeParams)
+    {
+        NSError *error = nil;
+        // Validation follows pattern described here: https://developer.apple.com/library/mac/documentation/cocoa/conceptual/KeyValueCoding/Articles/Validation.html
+        // User can create custom validators for their properties. If none exist, validateValue will return YES by default.
+        id valueToValidate = [routeParams objectForKey:routeParam];
+        BOOL valid = [viewController validateValue:&valueToValidate forKey:routeParam error:&error];
+        if (valid == NO)
+        {
+            if (loggingEnabled)
+            {
+                NSLog(@"Validation error when setting key:%@. Reason:%@", routeParam, error.localizedDescription);
+            }
+            return NO;
+        }
+
+        // check to see if valueToValidate has changed after validation
+        if ([valueToValidate isEqual:[routeParams objectForKey:routeParam]])
+        {
+            [viewController setValue:[routeParams objectForKey:routeParam] forKey:routeParam];
+        }
+        else
+        {
+            [viewController setValue:valueToValidate forKey:routeParam];
+        }
     }
     return YES;
 }
@@ -417,27 +437,20 @@ NSString *REGEX_JSON_NAME = @"regex";
 }
 
 
-- (NSDictionary *)getRequiredRouteParameterValues:(NSDictionary *)routeOptions
+- (NSMutableDictionary *)getRequiredRouteParameterValues:(NSDictionary *)routeOptions
 {
-    NSDictionary *requiredRouteParameters = [[NSDictionary alloc] init];
+    NSMutableDictionary *requiredRouteParameters = [[NSMutableDictionary alloc] init];
     NSDictionary *routeParameters = [routeOptions objectForKey:ROUTE_PARAMS_JSON_NAME];
     for (id routeParameter in routeParameters)
     {
         NSDictionary *routeParameterOptions = [routeParameters objectForKey:routeParameter];
         if ([[routeParameterOptions objectForKey:REQUIRED_JSON_NAME] isEqual:@"true"])
         {
-            if ([routeParameter hasPrefix:@":"])
-            {
-                [requiredRouteParameters setValue:NO forKey:[routeParameter substringFromIndex:1]];
-            }
-            else
-            {
-                [requiredRouteParameters setValue:NO forKey:routeParameter];
-            }
+            [requiredRouteParameters setValue:@NO forKey:routeParameter];
         }
     }
 
-    return nil;
+    return requiredRouteParameters;
 }
 
 /**
@@ -448,6 +461,8 @@ NSString *REGEX_JSON_NAME = @"regex";
 * There should not be a query parameter with the same name as the path parameter.
 *
 * Note, this does handle escaped query parameters.
+*
+* Precondition: queryString should not start with ?
 */
 - (BOOL)matchQueryParameters:(NSString *)queryString routeOptions:(NSDictionary *)routeOptions result:(NSMutableDictionary *)routeParameterValues error:(NSError **)error
 {
@@ -466,7 +481,15 @@ NSString *REGEX_JSON_NAME = @"regex";
             }
 
             NSString *value = [[nameAndValue objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            [routeParameterValues setValue:value forKey:name];
+
+            if ([self validateRouteComponent:name value:value routeOptions:routeOptions] == YES)
+            {
+                [routeParameterValues setValue:value forKey:name];
+            }
+            else
+            {
+                return NO;
+            }
         }
     }
     return YES;
