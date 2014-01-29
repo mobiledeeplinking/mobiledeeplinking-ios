@@ -1,0 +1,5 @@
+language: objective-c
+before_install: gem install cocoapods
+xcode_workspace: MobileDeepLinking.xcworkspace
+xcode_scheme: MobileDeepLinking-iOS
+xcode_sdk: iphonesimulator
