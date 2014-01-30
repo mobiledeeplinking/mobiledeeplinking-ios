@@ -98,7 +98,8 @@ NSString *REGEX_JSON_NAME = @"regex";
     NSError *error = nil;
 
     // base case
-    if ([[deeplink path] isEqualToString:@"/"] || [[deeplink path] isEqualToString:@""] || [deeplink path] == nil)
+    if (([[deeplink host] length] == 0) &&
+            ([[deeplink path] isEqualToString:@"/"] || [[deeplink path] length] == 0))
     {
         if (loggingEnabled)
         {
@@ -122,8 +123,7 @@ NSString *REGEX_JSON_NAME = @"regex";
                 {
                     NSLog(@"Error Getting routeParameterValues: %@", error.localizedDescription);
                 }
-                [self routeToDefault];
-                return;
+                break;
             }
 
             BOOL success = [self handleRouteWithOptions:routeOptions params:routeParameterValues storyboard:storyboardName error:&error];
@@ -133,8 +133,7 @@ NSString *REGEX_JSON_NAME = @"regex";
                 {
                     NSLog(@"Error when handling route: %@", error.localizedDescription);
                 }
-                [self routeToDefault];
-                return;
+                break;
             }
             return;
         }
@@ -143,6 +142,7 @@ NSString *REGEX_JSON_NAME = @"regex";
             if (error != nil && loggingEnabled)
             {
                 NSLog(@"Route did not match: %@", error.localizedDescription);
+                break;
             }
         }
     }
@@ -159,25 +159,9 @@ NSString *REGEX_JSON_NAME = @"regex";
 */
 - (BOOL)matchDeeplink:(NSString *)route routeOptions:(NSDictionary *)routeOptions deeplink:(NSURL *)deeplink results:(NSMutableDictionary *)results error:(NSError **)error
 {
-    BOOL pathMatchSuccess = [self matchPathParameters:route routeOptions:routeOptions deeplink:deeplink results:results error:error];
-    if (pathMatchSuccess == NO)
-    {
-        return NO;
-    }
-
-    BOOL queryParametersSuccess = [self matchQueryParameters:[deeplink query] routeOptions:routeOptions result:results error:error];
-    if (queryParametersSuccess == NO)
-    {
-        return NO;
-    }
-
-    BOOL requiredRouteParameterSuccess = [self checkForRequiredRouteParameters:routeOptions extractedResults:results error:error];
-    if (requiredRouteParameterSuccess == NO)
-    {
-        return NO;
-    }
-
-    return YES;
+    return [self matchPathParameters:route routeOptions:routeOptions deeplink:deeplink results:results error:error]
+        && [self matchQueryParameters:[deeplink query] routeOptions:routeOptions result:results error:error]
+        && [self checkForRequiredRouteParameters:routeOptions extractedResults:results error:error];
 }
 
 - (BOOL)checkForRequiredRouteParameters:(NSDictionary *)routeOptions extractedResults:(NSDictionary *)results error:(NSError **)error
@@ -268,14 +252,7 @@ NSString *REGEX_JSON_NAME = @"regex";
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexString options:0 error:nil];
 
         NSArray *matches = [regex matchesInString:value options:0 range:NSMakeRange(0, [value length])];
-        if ([matches count] == 1)
-        {
-            return YES;
-        }
-        else
-        {
-            return NO;
-        }
+        return ([matches count] == 1);
     }
     return YES;
 }
@@ -290,11 +267,21 @@ NSString *REGEX_JSON_NAME = @"regex";
 }
 
 /**
-* This method trims off the last path component in an NSURL.
+* This method trims off the last path or host component in an NSURL.
 */
 - (NSURL *)trimDeeplink:(NSURL *)deeplink
 {
+    NSString *deeplinkHost = [deeplink host];
     NSMutableArray *pathComponents = [NSMutableArray arrayWithArray:[deeplink pathComponents]];
+    if ([pathComponents count] == 0)
+    {
+        // path is empty - remove host if host exists
+        if (deeplinkHost)
+        {
+            deeplinkHost = nil;
+        }
+    }
+
     for (int i = ((int) [pathComponents count]) - 1; i >= 0; i--)
     {
         // remove any trailing slashes
@@ -319,7 +306,7 @@ NSString *REGEX_JSON_NAME = @"regex";
 
     return [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@://%@%@%@",
                                                                     [deeplink scheme],
-                                                                    ([deeplink host]) ? [deeplink host] : @"",
+                                                                    (deeplinkHost) ? deeplinkHost : @"",
                                                                     pathString,
                                                                     ([deeplink query]) ? [NSString stringWithFormat:@"?%@", [deeplink query]] : @""]];
 }
@@ -327,21 +314,10 @@ NSString *REGEX_JSON_NAME = @"regex";
 /**
 * Executes handlers and displays views.
 */
-- (bool)handleRouteWithOptions:(NSDictionary *)routeOptions params:(NSDictionary *)routeParams storyboard:(NSString *)storyboardName error:(NSError **)error
+- (BOOL)handleRouteWithOptions:(NSDictionary *)routeOptions params:(NSDictionary *)routeParams storyboard:(NSString *)storyboardName error:(NSError **)error
 {
-    BOOL handlerSuccess = [self executeHandlers:routeOptions routeParams:routeParams error:error];
-    if (!handlerSuccess)
-    {
-        return NO;
-    }
-
-    BOOL displayViewSuccess = [self displayView:routeOptions routeParams:routeParams storyboard:storyboardName error:error];
-    if (!displayViewSuccess)
-    {
-        return NO;
-    }
-
-    return YES;
+    return [self executeHandlers:routeOptions routeParams:routeParams error:error]
+        && [self displayView:routeOptions routeParams:routeParams storyboard:storyboardName error:error];
 }
 
 /**
@@ -416,15 +392,7 @@ NSString *REGEX_JSON_NAME = @"regex";
 
         @try
         {
-            // check to see if valueToValidate has changed after validation
-            if ([valueToValidate isEqual:[routeParams objectForKey:routeParam]])
-            {
-                [viewController setValue:[routeParams objectForKey:routeParam] forKey:routeParam];
-            }
-            else
-            {
-                [viewController setValue:valueToValidate forKey:routeParam];
-            }
+            [viewController setValue:valueToValidate forKey:routeParam];
         }
         @catch (NSException *e)
         {
