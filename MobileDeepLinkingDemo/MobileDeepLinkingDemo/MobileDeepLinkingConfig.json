@@ -1,11 +1,15 @@
 {
-    "logging": "false",
+    "logging": "true",
     "defaultRoute": {
         "storyboard": "Main_iPhone",
         "class": "DataViewController",
         "identifier": "DataViewController"
     },
     "routes": {
+        "data" : {
+            "storyboard": "Main_iPhone",
+            "identifier": "storyBoardViewController"
+        },
         "data/:dataId": {
             "storyboard": "Main_iPhone",
             "identifier": "storyBoardViewController",
