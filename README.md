@@ -9,5 +9,5 @@ This project is the iOS library component of the MobileDeepLinking specification
 
 ## Demo App
 
-Part of the `MobileDeepLinking.xcworkspace` includes `MobileDeepLinkingDemo`. This is a demo application that provides an example implementation of the `MobileDeepLinking.json` file, along with several custom handlers that demonstrate how to route to client-specified functionality. It also provides example routing to a storyboard based view, a xib based view, and a view without any Inteface Builder elements.
+Part of the `MobileDeepLinking.xcworkspace` includes `MobileDeepLinkingDemo`. This is a demo application that provides an example implementation of the `MobileDeepLinking.json` file, along with several custom handlers that demonstrate how to route to client-specified functionality. It also provides example routing to a storyboard based view, a xib based view, and a view without any Interface Builder elements.
 
