@@ -20,16 +20,11 @@
 // ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-// This is a private interface for unit testing.
+#import <Foundation/Foundation.h>
 
-#import "MobileDeepLinking.h"
 
-@interface MobileDeepLinking ()
+@interface MDLError : NSObject
 
-- (void)routeToDefault;
-
-- (BOOL)handleRouteWithOptions:(NSDictionary *)routeOptions params:(NSDictionary *)routeParams error:(NSError **)error;
-
-- (NSURL *)trimDeeplink:(NSURL *)deeplink;
++ (void)setError:(NSError **)error withMessage:(NSString *)message;
 
 @end

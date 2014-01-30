@@ -20,16 +20,41 @@
 // ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-// This is a private interface for unit testing.
-
+#import "MDLConfig.h"
 #import "MobileDeepLinking.h"
 
-@interface MobileDeepLinking ()
 
-- (void)routeToDefault;
+@implementation MDLConfig
+{
+}
 
-- (BOOL)handleRouteWithOptions:(NSDictionary *)routeOptions params:(NSDictionary *)routeParams error:(NSError **)error;
+@synthesize logging = _logging;
+@synthesize storyboardName = _storyboardName;
+@synthesize routes = _routes;
+@synthesize defaultRoute = _defaultRoute;
 
-- (NSURL *)trimDeeplink:(NSURL *)deeplink;
+- (id)initConfiguration
+{
+    self = [super init];
+
+    if (self)
+    {
+        NSError *error = nil;
+        NSString *configFilePath = [[NSBundle bundleForClass:[self class]] pathForResource:MOBILEDEEPLINKING_CONFIG_NAME ofType:@"json"];
+        NSData *configData = [[NSFileManager defaultManager] contentsAtPath:configFilePath];
+        NSDictionary *config = [NSJSONSerialization JSONObjectWithData:configData options:0 error:&error];
+        if (config == nil)
+        {
+            NSLog(@"MobileDeepLinking configuration file error: %@", error);
+            return nil;
+        }
+
+        _logging = ([[config objectForKey:LOGGING_JSON_NAME] isEqualToString:@"true"]);
+        _routes = [config objectForKey:ROUTES_JSON_NAME];
+        _storyboardName = [config objectForKey:STORYBOARD_JSON_NAME];
+        _defaultRoute = [config objectForKey:DEFAULT_ROUTE_JSON_NAME];
+    }
+    return self;
+}
 
 @end

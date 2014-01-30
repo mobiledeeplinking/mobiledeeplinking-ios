@@ -20,16 +20,22 @@
 // ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-// This is a private interface for unit testing.
+#import <Foundation/Foundation.h>
 
-#import "MobileDeepLinking.h"
 
-@interface MobileDeepLinking ()
+@interface MDLConfig : NSObject
+{
+    BOOL _logging;
+    NSString * _storyboardName;
+    NSDictionary * _routes;
+    NSDictionary * _defaultRoute;
+}
 
-- (void)routeToDefault;
+- (id)initConfiguration;
 
-- (BOOL)handleRouteWithOptions:(NSDictionary *)routeOptions params:(NSDictionary *)routeParams error:(NSError **)error;
-
-- (NSURL *)trimDeeplink:(NSURL *)deeplink;
+@property (nonatomic, assign) BOOL logging;
+@property (nonatomic, retain) NSString * storyboardName;
+@property (nonatomic, retain) NSDictionary * routes;
+@property (nonatomic, retain) NSDictionary * defaultRoute;
 
 @end
