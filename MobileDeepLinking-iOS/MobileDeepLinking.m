@@ -99,7 +99,7 @@ NSString *REGEX_JSON_NAME = @"regex";
 
     // base case
     if (([[deeplink host] length] == 0) &&
-        ([[deeplink path] isEqualToString:@"/"] || [[deeplink path] length] == 0))
+            ([[deeplink path] isEqualToString:@"/"] || [[deeplink path] length] == 0))
     {
         if (loggingEnabled)
         {
@@ -159,25 +159,9 @@ NSString *REGEX_JSON_NAME = @"regex";
 */
 - (BOOL)matchDeeplink:(NSString *)route routeOptions:(NSDictionary *)routeOptions deeplink:(NSURL *)deeplink results:(NSMutableDictionary *)results error:(NSError **)error
 {
-    BOOL pathMatchSuccess = [self matchPathParameters:route routeOptions:routeOptions deeplink:deeplink results:results error:error];
-    if (pathMatchSuccess == NO)
-    {
-        return NO;
-    }
-
-    BOOL queryParametersSuccess = [self matchQueryParameters:[deeplink query] routeOptions:routeOptions result:results error:error];
-    if (queryParametersSuccess == NO)
-    {
-        return NO;
-    }
-
-    BOOL requiredRouteParameterSuccess = [self checkForRequiredRouteParameters:routeOptions extractedResults:results error:error];
-    if (requiredRouteParameterSuccess == NO)
-    {
-        return NO;
-    }
-
-    return YES;
+    return [self matchPathParameters:route routeOptions:routeOptions deeplink:deeplink results:results error:error]
+        && [self matchQueryParameters:[deeplink query] routeOptions:routeOptions result:results error:error]
+        && [self checkForRequiredRouteParameters:routeOptions extractedResults:results error:error];
 }
 
 - (BOOL)checkForRequiredRouteParameters:(NSDictionary *)routeOptions extractedResults:(NSDictionary *)results error:(NSError **)error
@@ -297,7 +281,7 @@ NSString *REGEX_JSON_NAME = @"regex";
             deeplinkHost = nil;
         }
     }
-    
+
     for (int i = ((int) [pathComponents count]) - 1; i >= 0; i--)
     {
         // remove any trailing slashes
@@ -330,21 +314,10 @@ NSString *REGEX_JSON_NAME = @"regex";
 /**
 * Executes handlers and displays views.
 */
-- (bool)handleRouteWithOptions:(NSDictionary *)routeOptions params:(NSDictionary *)routeParams storyboard:(NSString *)storyboardName error:(NSError **)error
+- (BOOL)handleRouteWithOptions:(NSDictionary *)routeOptions params:(NSDictionary *)routeParams storyboard:(NSString *)storyboardName error:(NSError **)error
 {
-    BOOL handlerSuccess = [self executeHandlers:routeOptions routeParams:routeParams error:error];
-    if (!handlerSuccess)
-    {
-        return NO;
-    }
-
-    BOOL displayViewSuccess = [self displayView:routeOptions routeParams:routeParams storyboard:storyboardName error:error];
-    if (!displayViewSuccess)
-    {
-        return NO;
-    }
-
-    return YES;
+    return [self executeHandlers:routeOptions routeParams:routeParams error:error]
+        && [self displayView:routeOptions routeParams:routeParams storyboard:storyboardName error:error];
 }
 
 /**
