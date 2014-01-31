@@ -21,6 +21,7 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #import "AppDelegate.h"
+#import "NonIBViewController.h"
 #import <MobileDeepLinking/MobileDeepLinking.h>
 
 @implementation AppDelegate
@@ -44,6 +45,14 @@
         {
             NSLog(@"%@: %@", param, [params objectForKey:param]);
         }
+    }];
+
+    [[MobileDeepLinking sharedInstance] registerHandlerWithName:@"routeToNonNibView" handler:^void(NSDictionary *params)
+    {
+        NonIBViewController *nonIBViewController = [[NonIBViewController alloc] init];
+        UITabBarController *tabBarController = (UITabBarController *) self.window.rootViewController;
+        [tabBarController setSelectedIndex:0];
+        [(UINavigationController *) [tabBarController.viewControllers objectAtIndex:0] pushViewController:nonIBViewController animated:YES];
     }];
 
     // Override point for customization after application launch.

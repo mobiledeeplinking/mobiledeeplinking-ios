@@ -39,8 +39,11 @@
             "class": "ViewControllerWithNib",
             "handlers": ["mutatorHandler", "myHandler"]
         },
-        "product/:productId": {
+        "product": {
             "class": "NonIBViewController"
+        },
+        "handler": {
+            "handlers": ["routeToNonNibView"]
         }
     }
 }

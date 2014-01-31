@@ -24,6 +24,4 @@
 
 @interface NonIBViewController : UIViewController
 
-@property(nonatomic, assign) id productId;
-
 @end

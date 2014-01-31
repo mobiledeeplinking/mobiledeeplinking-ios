@@ -37,7 +37,10 @@
     id newViewController = [self buildViewController:routeOptions storyboard:config.storyboardName config:config];
     if (!newViewController)
     {
-        [MDLError setError:error withMessage:@"Building view controller failed. Are you sure you're setting the appropriate json parameters for your type of view (storyboard, nib, neither)?"];
+        if (config.logging)
+        {
+            NSLog(@"No View Controllers found in route options.");
+        }
         return NO;
     }
 

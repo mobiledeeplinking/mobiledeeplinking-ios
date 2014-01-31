@@ -38,6 +38,10 @@
     return self;
 }
 
+/**
+ * Attempts to show view on UINavigationController. Assumes that rootViewController is either UINavigationController or UITabBarView with a child UINavigationController.
+ * If UINavigationController is not found, replace rootViewController with selected view controller.
+ */
 - (void)showViewController:(UIViewController*)viewController
 {
 //    UIViewController *frontViewController = [self frontViewController];
@@ -49,13 +53,20 @@
     else if ([_rootViewController isKindOfClass:[UITabBarController class]])
     {
         UITabBarController *tabBarController = (UITabBarController *)_rootViewController;
-        if (tabBarController.selectedViewController)
+        
+        for (UIViewController *controllerInTabBar in tabBarController.viewControllers)
         {
-            [((UINavigationController *) tabBarController.selectedViewController) pushViewController:viewController animated:YES];
-
-        } else
+            if ([viewController isKindOfClass:[controllerInTabBar class]])
+            {
+                [tabBarController setSelectedViewController:controllerInTabBar];
+                return;
+            }
+        }
+        
+        if ([[tabBarController.viewControllers objectAtIndex:0] isKindOfClass:[UINavigationController class]])
         {
             [((UINavigationController *) [tabBarController.viewControllers objectAtIndex:0]) pushViewController:viewController animated:YES];
+            [tabBarController setSelectedIndex:0];
         }
     }
     else

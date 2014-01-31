@@ -115,7 +115,7 @@
             }
 
             BOOL success = [self handleRouteWithOptions:routeOptions params:routeParameterValues error:&error];
-            if (!success)
+            if (!success && error != nil)
             {
                 if (config.logging)
                 {

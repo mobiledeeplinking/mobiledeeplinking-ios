@@ -28,8 +28,6 @@
 
 @implementation NonIBViewController
 
-@synthesize productId;
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -49,7 +47,7 @@
 
     UILabel *label = [[UILabel alloc] init];
     label.numberOfLines = 2;
-    [label setText:[NSString stringWithFormat:@"View Controller Without Storyboard or Nib. ProductId: %@", productId]];
+    [label setText:[NSString stringWithFormat:@"View Controller Without Storyboard or Nib."]];
 
     [label setFrame:CGRectMake((self.view.frame.size.width / 2),
             (self.view.frame.size.height / 2),
