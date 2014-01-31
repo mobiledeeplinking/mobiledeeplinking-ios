@@ -28,7 +28,7 @@
 
 @interface MDLViewBuilder : NSObject
 
-+ (id)buildViewController:(NSDictionary *)routeOptions storyboard:(NSString *)storyboardName config:(MDLConfig *)config;
++ (id)buildViewController:(NSDictionary *)routeOptions config:(MDLConfig *)config;
 
 + (BOOL)displayView:(NSDictionary *)routeOptions routeParams:(NSDictionary *)routeParams config:(MDLConfig *)config error:(NSError **)error;
 

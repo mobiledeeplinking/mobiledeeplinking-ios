@@ -36,5 +36,7 @@
 #define ROUTE_PARAMS_JSON_NAME @"routeParameters"
 #define REQUIRED_JSON_NAME @"required"
 #define REGEX_JSON_NAME @"regex"
+#define STORYBOARD_IPHONE_NAME @"iPhone"
+#define STORYBOARD_IPAD_NAME @"iPad"
 
 @end

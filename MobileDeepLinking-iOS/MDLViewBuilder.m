@@ -34,7 +34,7 @@
 + (BOOL)displayView:(NSDictionary *)routeOptions routeParams:(NSDictionary *)routeParams config:(MDLConfig *)config error:(NSError **)error
 {
     // construct view controller
-    id newViewController = [self buildViewController:routeOptions storyboard:config.storyboardName config:config];
+    id newViewController = [self buildViewController:routeOptions config:config];
     if (!newViewController)
     {
         if (config.logging)
@@ -61,11 +61,13 @@
 /**
 * Depending on the combination of storyboard, identifier, and class, build a view controller.
 */
-+ (id)buildViewController:(NSDictionary *)routeOptions storyboard:(NSString *)storyboardName config:(MDLConfig *)config
++ (id)buildViewController:(NSDictionary *)routeOptions config:(MDLConfig *)config
 {
+    NSString *storyboardName = [self getStoryboardName:config.storyboard];
+
     if ([routeOptions objectForKey:STORYBOARD_JSON_NAME])
     {
-        storyboardName = [routeOptions objectForKey:STORYBOARD_JSON_NAME];
+        storyboardName = [self getStoryboardName:[routeOptions objectForKey:STORYBOARD_JSON_NAME]];
     }
 
     NSString *identifier = [routeOptions objectForKey:IDENTIFIER_JSON_NAME];
@@ -101,6 +103,18 @@
     else
     {
         return nil;
+    }
+}
+
++ (NSString *)getStoryboardName:(NSDictionary *)storyboard
+{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
+    {
+        return [storyboard objectForKey:STORYBOARD_IPHONE_NAME];
+    }
+    else
+    {
+        return [storyboard objectForKey:STORYBOARD_IPAD_NAME];
     }
 }
 

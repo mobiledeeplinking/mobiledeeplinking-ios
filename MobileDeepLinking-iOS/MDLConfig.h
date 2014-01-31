@@ -26,7 +26,7 @@
 @interface MDLConfig : NSObject
 {
     BOOL _logging;
-    NSString * _storyboardName;
+    NSDictionary *_storyboard;
     NSDictionary * _routes;
     NSDictionary * _defaultRoute;
 }
@@ -34,7 +34,7 @@
 - (id)initConfiguration;
 
 @property (nonatomic, assign) BOOL logging;
-@property (nonatomic, retain) NSString * storyboardName;
+@property (nonatomic, retain) NSDictionary *storyboard;
 @property (nonatomic, retain) NSDictionary * routes;
 @property (nonatomic, retain) NSDictionary * defaultRoute;
 

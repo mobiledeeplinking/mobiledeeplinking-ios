@@ -29,7 +29,7 @@
 }
 
 @synthesize logging = _logging;
-@synthesize storyboardName = _storyboardName;
+@synthesize storyboard = _storyboard;
 @synthesize routes = _routes;
 @synthesize defaultRoute = _defaultRoute;
 
@@ -51,7 +51,7 @@
 
         _logging = ([[config objectForKey:LOGGING_JSON_NAME] isEqualToString:@"true"]);
         _routes = [config objectForKey:ROUTES_JSON_NAME];
-        _storyboardName = [config objectForKey:STORYBOARD_JSON_NAME];
+        _storyboard = [config objectForKey:STORYBOARD_JSON_NAME];
         _defaultRoute = [config objectForKey:DEFAULT_ROUTE_JSON_NAME];
     }
     return self;

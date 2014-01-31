@@ -1,17 +1,27 @@
 {
     "logging": "true",
     "defaultRoute": {
+        "storyboard": {
+            "iPhone" : "Main_iPhone",
+            "iPad" : "Main_iPad"
+        },
         "storyboard": "Main_iPhone",
         "class": "DataViewController",
         "identifier": "DataViewController"
     },
     "routes": {
         "data" : {
-            "storyboard": "Main_iPhone",
+            "storyboard": {
+                "iPhone" : "Main_iPhone",
+                "iPad" : "Main_iPad"
+            },
             "identifier": "storyBoardViewController"
         },
         "data/:dataId": {
-            "storyboard": "Main_iPhone",
+            "storyboard": {
+                "iPhone" : "Main_iPhone",
+                "iPad" : "Main_iPad"
+            },
             "identifier": "storyBoardViewController",
             "handlers": ["myHandler"],
             "routeParameters": {
@@ -21,7 +31,10 @@
             }
         },
         "regex/:dataId": {
-            "storyboard": "Main_iPhone",
+            "storyboard": {
+                "iPhone" : "Main_iPhone",
+                "iPad" : "Main_iPad"
+            },
             "identifier": "storyBoardViewController",
             "handlers": ["myHandler"],
             "routeParameters": {
