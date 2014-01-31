@@ -22,7 +22,21 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		5C59318C6874EB32787475AC /* MDLConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C593B9647E6C98932B9A8A4 /* MDLConfig.m */; };
+		5C5932AE643EF975444CA2DE /* MDLError.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C5935D5D9CEA514BBDCE51B /* MDLError.h */; };
 		5C5932F392CE22BFDB3882D2 /* MobileDeepLinking_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C593F1A244A8594687EACD8 /* MobileDeepLinking_Private.h */; };
+		5C593414DE8FC29DDE878743 /* MDLError.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C5933718EE540E5D3B0F776 /* MDLError.m */; };
+		5C593523343AA5EAAC32B149 /* MDLViewBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C593CA91C603DDDCA2923A5 /* MDLViewBuilder.h */; };
+		5C593571E5E551E4876CB241 /* MDLConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C5931B2039660079B3B2196 /* MDLConstants.h */; };
+		5C59365926553C39DFF144F5 /* MDLConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C593D8622A2AEBB2AA59978 /* MDLConstants.m */; };
+		5C5937D655863A00FCB3B226 /* MDLViewNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C5938B2529641F773304D4A /* MDLViewNavigator.h */; };
+		5C593BC593E2125E839CEDB8 /* MDLDeeplinkMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C5931B4028FBEA918C6EABD /* MDLDeeplinkMatcher.h */; };
+		5C593C3D5DABEA7C3E59F89F /* MDLDeeplinkMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C593AA5EFB18DDB5B654086 /* MDLDeeplinkMatcher.m */; };
+		5C593CE9B93A946BF5F1E09B /* MDLHandlerExecutor.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C593B624480F2392A4421ED /* MDLHandlerExecutor.h */; };
+		5C593DDBBC8BA942093901EA /* MDLViewBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C5936392C024000AA23384F /* MDLViewBuilder.m */; };
+		5C593EE57581E2BDBB2DFA15 /* MDLViewNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C59307B24EE6EE9F4A0AA1E /* MDLViewNavigator.m */; };
+		5C593FA45980BB40750B2441 /* MDLConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C5936751634894E6D5B94B8 /* MDLConfig.h */; };
+		5C593FC7976EE5DFACBCA85B /* MDLHandlerExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C593CEBC5A03D07AA40D5F0 /* MDLHandlerExecutor.m */; };
 		AA81F52A18984FF000EE8862 /* MatchQueryParameterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AA81F52918984FF000EE8862 /* MatchQueryParameterTest.m */; };
 		AA81F52E1898500100EE8862 /* RegexValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AA81F52D1898500100EE8862 /* RegexValidationTest.m */; };
 		AA81F5301898547800EE8862 /* ExecuteHandlersTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AA81F52F1898547800EE8862 /* ExecuteHandlersTest.m */; };
@@ -87,6 +101,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5C59307B24EE6EE9F4A0AA1E /* MDLViewNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDLViewNavigator.m; sourceTree = "<group>"; };
+		5C5931B2039660079B3B2196 /* MDLConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDLConstants.h; sourceTree = "<group>"; };
+		5C5931B4028FBEA918C6EABD /* MDLDeeplinkMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDLDeeplinkMatcher.h; sourceTree = "<group>"; };
+		5C5933718EE540E5D3B0F776 /* MDLError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDLError.m; sourceTree = "<group>"; };
+		5C5935D5D9CEA514BBDCE51B /* MDLError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDLError.h; sourceTree = "<group>"; };
+		5C5936392C024000AA23384F /* MDLViewBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDLViewBuilder.m; sourceTree = "<group>"; };
+		5C5936751634894E6D5B94B8 /* MDLConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDLConfig.h; sourceTree = "<group>"; };
+		5C5938B2529641F773304D4A /* MDLViewNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDLViewNavigator.h; sourceTree = "<group>"; };
+		5C593AA5EFB18DDB5B654086 /* MDLDeeplinkMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDLDeeplinkMatcher.m; sourceTree = "<group>"; };
+		5C593B624480F2392A4421ED /* MDLHandlerExecutor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDLHandlerExecutor.h; sourceTree = "<group>"; };
+		5C593B9647E6C98932B9A8A4 /* MDLConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDLConfig.m; sourceTree = "<group>"; };
+		5C593CA91C603DDDCA2923A5 /* MDLViewBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDLViewBuilder.h; sourceTree = "<group>"; };
+		5C593CEBC5A03D07AA40D5F0 /* MDLHandlerExecutor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDLHandlerExecutor.m; sourceTree = "<group>"; };
+		5C593D8622A2AEBB2AA59978 /* MDLConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDLConstants.m; sourceTree = "<group>"; };
 		5C593F1A244A8594687EACD8 /* MobileDeepLinking_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileDeepLinking_Private.h; sourceTree = "<group>"; };
 		9EEB6824015A495E80B6F714 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA81F52918984FF000EE8862 /* MatchQueryParameterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchQueryParameterTest.m; sourceTree = "<group>"; };
@@ -177,6 +205,20 @@
 				AABF8DFC188F29B900E35A09 /* MobileDeepLinking.m */,
 				AABF8DF8188F29B900E35A09 /* Supporting Files */,
 				5C593F1A244A8594687EACD8 /* MobileDeepLinking_Private.h */,
+				5C593AA5EFB18DDB5B654086 /* MDLDeeplinkMatcher.m */,
+				5C5931B4028FBEA918C6EABD /* MDLDeeplinkMatcher.h */,
+				5C5933718EE540E5D3B0F776 /* MDLError.m */,
+				5C5935D5D9CEA514BBDCE51B /* MDLError.h */,
+				5C593CEBC5A03D07AA40D5F0 /* MDLHandlerExecutor.m */,
+				5C593B624480F2392A4421ED /* MDLHandlerExecutor.h */,
+				5C5936392C024000AA23384F /* MDLViewBuilder.m */,
+				5C593CA91C603DDDCA2923A5 /* MDLViewBuilder.h */,
+				5C593D8622A2AEBB2AA59978 /* MDLConstants.m */,
+				5C5931B2039660079B3B2196 /* MDLConstants.h */,
+				5C593B9647E6C98932B9A8A4 /* MDLConfig.m */,
+				5C5936751634894E6D5B94B8 /* MDLConfig.h */,
+				5C59307B24EE6EE9F4A0AA1E /* MDLViewNavigator.m */,
+				5C5938B2529641F773304D4A /* MDLViewNavigator.h */,
 			);
 			name = MobileDeepLinking;
 			path = "MobileDeepLinking-iOS";
@@ -233,6 +275,13 @@
 			files = (
 				AABF8E1C188F2AF700E35A09 /* MobileDeepLinking.h in Headers */,
 				5C5932F392CE22BFDB3882D2 /* MobileDeepLinking_Private.h in Headers */,
+				5C593BC593E2125E839CEDB8 /* MDLDeeplinkMatcher.h in Headers */,
+				5C5932AE643EF975444CA2DE /* MDLError.h in Headers */,
+				5C593CE9B93A946BF5F1E09B /* MDLHandlerExecutor.h in Headers */,
+				5C593523343AA5EAAC32B149 /* MDLViewBuilder.h in Headers */,
+				5C593571E5E551E4876CB241 /* MDLConstants.h in Headers */,
+				5C593FA45980BB40750B2441 /* MDLConfig.h in Headers */,
+				5C5937D655863A00FCB3B226 /* MDLViewNavigator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +478,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				AABF8DFD188F29B900E35A09 /* MobileDeepLinking.m in Sources */,
+				5C593C3D5DABEA7C3E59F89F /* MDLDeeplinkMatcher.m in Sources */,
+				5C593414DE8FC29DDE878743 /* MDLError.m in Sources */,
+				5C593FC7976EE5DFACBCA85B /* MDLHandlerExecutor.m in Sources */,
+				5C593DDBBC8BA942093901EA /* MDLViewBuilder.m in Sources */,
+				5C59365926553C39DFF144F5 /* MDLConstants.m in Sources */,
+				5C59318C6874EB32787475AC /* MDLConfig.m in Sources */,
+				5C593EE57581E2BDBB2DFA15 /* MDLViewNavigator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,7 +532,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -514,7 +569,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -580,7 +634,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C7404A1DC1E84E8E918CE51B /* Pods.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -606,7 +659,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C7404A1DC1E84E8E918CE51B /* Pods.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

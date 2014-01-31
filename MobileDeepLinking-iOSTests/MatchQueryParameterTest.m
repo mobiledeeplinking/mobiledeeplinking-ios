@@ -1,10 +1,24 @@
+// Copyright (C) 2013 by MobileDeepLinking.org
 //
-//  MatchQueryParameterTest.m
-//  MobileDeepLinking
+// Permission is hereby granted, free of charge, to any
+// person obtaining a copy of this software and
+// associated documentation files (the "Software"), to
+// deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge,
+// publish, distribute, sublicense, and/or sell copies of the
+// Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
 //
-//  Created by Ethan on 1/28/14.
-//  Copyright (c) 2014 mobiledeeplinking. All rights reserved.
+// The above copyright notice and this permission notice shall
+// be included in all copies or substantial portions of the Software.
 //
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+// OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+// BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+// ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+// CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #import <XCTest/XCTest.h>
 
@@ -13,6 +27,7 @@
 #import <Expecta/Expecta.h>
 #import "MobileDeepLinking.h"
 #import "MobileDeepLinking_Private.h"
+#import "MDLDeeplinkMatcher.h"
 
 @interface MatchQueryParameterTest : XCTestCase
 
@@ -45,7 +60,7 @@
 {
     results = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    expect([mobileDeepLinking matchQueryParameters:@"name=value" routeOptions:routeOptions result:results error:nil]
+    expect([MDLDeeplinkMatcher matchQueryParameters:@"name=value" routeOptions:routeOptions result:results error:nil]
     ).to.equal(YES);
     expect(results).to.equal(dict);
 }
@@ -54,7 +69,7 @@
 {
     results = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    expect([mobileDeepLinking matchQueryParameters:@"name=value&name2=value2" routeOptions:routeOptions result:results error:nil]
+    expect([MDLDeeplinkMatcher matchQueryParameters:@"name=value&name2=value2" routeOptions:routeOptions result:results error:nil]
     ).to.equal(YES);
     expect(results).to.equal(dict);
 }
@@ -66,7 +81,7 @@
 
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     [dict setValue:@"value" forKey:@"name"];
-    expect([mobileDeepLinking matchQueryParameters:@"name=value" routeOptions:routeOptions result:results error:nil]
+    expect([MDLDeeplinkMatcher matchQueryParameters:@"name=value" routeOptions:routeOptions result:results error:nil]
     ).to.equal(YES);
     expect(results).to.equal(dict);
 }
@@ -79,7 +94,7 @@
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     [dict setValue:@"value" forKey:@"name"];
 
-    expect([mobileDeepLinking matchQueryParameters:@"name=value&name2=value2" routeOptions:routeOptions result:results error:nil]
+    expect([MDLDeeplinkMatcher matchQueryParameters:@"name=value&name2=value2" routeOptions:routeOptions result:results error:nil]
     ).to.equal(YES);
     expect(results).to.equal(dict);
 }
@@ -92,7 +107,7 @@
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     [dict setValue:@"value2" forKey:@"name2"];
 
-    expect([mobileDeepLinking matchQueryParameters:@"name=value&name2=value2" routeOptions:routeOptions result:results error:nil]
+    expect([MDLDeeplinkMatcher matchQueryParameters:@"name=value&name2=value2" routeOptions:routeOptions result:results error:nil]
     ).to.equal(YES);
     expect(results).to.equal(dict);
 }
@@ -106,7 +121,7 @@
     [dict setValue:@"value" forKey:@"name"];
     [dict setValue:@"value2" forKey:@"name2"];
 
-    expect([mobileDeepLinking matchQueryParameters:@"name=value&name2=value2" routeOptions:routeOptions result:results error:nil]
+    expect([MDLDeeplinkMatcher matchQueryParameters:@"name=value&name2=value2" routeOptions:routeOptions result:results error:nil]
     ).to.equal(YES);
     expect(results).to.equal(dict);
 }
@@ -119,12 +134,12 @@
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     [dict setValue:@"6" forKey:@"name"];
 
-    expect([mobileDeepLinking matchQueryParameters:@"name=6&name2=value2" routeOptions:routeOptions result:results error:nil]
+    expect([MDLDeeplinkMatcher matchQueryParameters:@"name=6&name2=value2" routeOptions:routeOptions result:results error:nil]
     ).to.equal(YES);
     expect(results).to.equal(dict);
 
     results = [[NSMutableDictionary alloc] init];
-    expect([mobileDeepLinking matchQueryParameters:@"name=62&name2=value2" routeOptions:routeOptions result:results error:nil]
+    expect([MDLDeeplinkMatcher matchQueryParameters:@"name=62&name2=value2" routeOptions:routeOptions result:results error:nil]
     ).to.equal(NO);
 }
 
