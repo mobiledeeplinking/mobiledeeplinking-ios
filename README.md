@@ -27,6 +27,18 @@ These handlers are provided with a NSDictionary with all route parameters found 
 
 This library was developed using ARC and supports iOS 5 and above on all architectures.
 
+
+## Build
+
+This library follows the iOS Framework build process laid out [here](https://github.com/jverkoey/iOS-Framework). The library can be found in the releases/ folder. It is also available through CocoaPods.
+
+To build from source:
+
+1. Build the `MobileDeepLinking-iOS` scheme. 
+2. Build the `Framework` scheme.
+3. Expand the `Products` folder in Xcode, right click the .a file, and click "Show in Finder". Within this folder you will see your `.framework` folder. This is the built framework file that can be dropped into other projects.
+
+
 ## Installation
 
 #### Required
@@ -48,18 +60,6 @@ Register Custom Handlers (if desired) in your AppDelegate's `didFinishLaunchingW
 	        NSLog(@"exampleHandler");
 	    }];
 	}
-
-
-## Build
-
-This library follows the iOS Framework build process laid out [here](https://github.com/jverkoey/iOS-Framework). The library can be found in the releases/ folder.
-
-To build from source:
-
-1. Build the `MobileDeepLinking-iOS` scheme. 
-2. Build the `Framework` scheme.
-3. Expand the `Products` folder in Xcode, right click the .a file, and click "Show in Finder". Within this folder you will see your `.framework` folder. This is the built framework file that can be dropped into other projects.
-
 
 ## Run Unit Tests
 
