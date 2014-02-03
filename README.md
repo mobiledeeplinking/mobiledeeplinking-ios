@@ -52,7 +52,7 @@ Register Custom Handlers (if desired) in your AppDelegate's `didFinishLaunchingW
 
 ## Build
 
-This library follows the iOS Framework build process laid out [here](https://github.com/jverkoey/iOS-Framework). The library will be provided in a `.framework` file and on Cocoapods when released.
+This library follows the iOS Framework build process laid out [here](https://github.com/jverkoey/iOS-Framework). The library can be found in the releases/ folder.
 
 To build from source:
 
