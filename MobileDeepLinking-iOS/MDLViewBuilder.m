@@ -108,14 +108,22 @@
 
 + (NSString *)getStoryboardName:(NSDictionary *)storyboard
 {
+    NSString * storyboardName = nil;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
     {
-        return [storyboard objectForKey:STORYBOARD_IPHONE_NAME];
+        storyboardName = [storyboard objectForKey:STORYBOARD_IPHONE_NAME];
     }
     else
     {
-        return [storyboard objectForKey:STORYBOARD_IPAD_NAME];
+        storyboardName = [storyboard objectForKey:STORYBOARD_IPAD_NAME];
+
+        // if ipad storyboard is not defined, fall back to iphone storyboard
+        if (storyboardName == nil)
+        {
+            storyboardName = [storyboard objectForKey:STORYBOARD_IPHONE_NAME];
+        }
     }
+    return storyboardName;
 }
 
 + (BOOL)setPropertiesOnViewController:(UIViewController *)viewController routeParams:(NSDictionary *)routeParams config:(MDLConfig *)config

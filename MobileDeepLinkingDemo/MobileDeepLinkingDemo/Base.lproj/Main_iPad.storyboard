@@ -76,15 +76,15 @@
         <scene sceneID="Ygg-yD-6EY">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="Hr8-1u-bG5" sceneMemberID="viewController">
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="2UC-RP-YKT">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="9l6-Xe-IEC" kind="relationship" relationship="viewControllers" id="4HZ-Se-uLY"/>
                         <segue destination="gT2-83-aeM" kind="relationship" relationship="viewControllers" id="Fh0-90-NDc"/>
+                        <segue destination="9l6-Xe-IEC" kind="relationship" relationship="viewControllers" id="4HZ-Se-uLY"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a6B-yo-mM4" userLabel="First Responder" sceneMemberID="firstResponder"/>
