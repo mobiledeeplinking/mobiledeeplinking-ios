@@ -21,7 +21,7 @@ Three types of viewControllers are supported. They are listed below with the app
 
 There may be cases where you need to set up a view before displaying it. This functionality is supported through the use of custom handlers. In the `didFinishLaunchingWithOptions` method in your AppDelegate, you can register blocks (essentially callback functions) that will be executed when an associated route is matched. This association takes place in the configuration json.
 
-These handlers are provided with a NSDictionary with all route parameters found in the deeplink. They can modify the contents of this dictionary, which will be forwarded on to the next handler in the handlers array. Handlers can be reused across multiple routes and can be used in conjucation with view instantiation or entirely on their own.
+These handlers are provided with an NSDictionary with all route parameters found in the deeplink. They can modify the contents of this dictionary, which will be forwarded on to the next handler in the handlers array. Handlers can be reused across multiple routes and can be used in conjunction with view instantiation or entirely on their own.
 
 ## Compatibility
 
