@@ -44,16 +44,13 @@
  */
 - (void)showViewController:(UIViewController*)viewController
 {
-//    UIViewController *frontViewController = [self frontViewController];
-    
     if ([_rootViewController isKindOfClass:[UINavigationController class]])
     {
-        [((UINavigationController *) _rootViewController) pushViewController:viewController animated:YES];
+        [self pushViewControllerOntoRoot:(UINavigationController *) _rootViewController controller:viewController];
     }
     else if ([_rootViewController isKindOfClass:[UITabBarController class]])
     {
         UITabBarController *tabBarController = (UITabBarController *)_rootViewController;
-        
         for (UIViewController *controllerInTabBar in tabBarController.viewControllers)
         {
             if ([viewController isKindOfClass:[controllerInTabBar class]])
@@ -65,13 +62,23 @@
         
         if ([[tabBarController.viewControllers objectAtIndex:0] isKindOfClass:[UINavigationController class]])
         {
-            [((UINavigationController *) [tabBarController.viewControllers objectAtIndex:0]) pushViewController:viewController animated:YES];
+            [self pushViewControllerOntoRoot:(UINavigationController *)[tabBarController.viewControllers objectAtIndex:0] controller:viewController];
             [tabBarController setSelectedIndex:0];
         }
     }
     else
     {
         [[UIApplication sharedApplication] keyWindow].rootViewController = viewController;
+    }
+}
+
+- (void) pushViewControllerOntoRoot:(UINavigationController *)navController controller:(UIViewController *)viewController
+{
+    [navController popToRootViewControllerAnimated:NO];
+    
+    if (![viewController isKindOfClass:[navController.viewControllers[0] class]])
+    {
+        [navController pushViewController:viewController animated:YES];
     }
 }
 

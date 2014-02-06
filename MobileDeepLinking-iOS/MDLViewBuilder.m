@@ -52,7 +52,6 @@
     }
 
     // push view controller
-//    [[UIApplication sharedApplication] keyWindow].rootViewController = newViewController;
     MDLViewNavigator *viewNavigator = [[MDLViewNavigator alloc] initWithRootViewController:[[UIApplication sharedApplication] keyWindow].rootViewController];
     [viewNavigator showViewController:newViewController];
     return YES;
