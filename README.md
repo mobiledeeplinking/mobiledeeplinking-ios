@@ -4,7 +4,7 @@ This project is the iOS library component of the MobileDeepLinking specification
 
 ## Features
 
-Given a configuration file (`MobileDeepLinking.json`), this library provides an app the ability to route incoming deeplinks to view controllers or custom logic. It has the ability to automatically instantiate and push view controllers onto the navigation controller, as well the ability to register callback handlers that are executed when matching a deeplink.
+Given a configuration file (`MobileDeepLinkingConfig.json`), this library provides an app the ability to route incoming deeplinks to view controllers or custom logic. It has the ability to automatically instantiate and push view controllers onto the navigation controller, as well the ability to register callback handlers that are executed when matching a deeplink.
 
 ### View Routing
 
@@ -43,7 +43,7 @@ To build from source:
 
 #### Required
 
-Create a `MobileDeepLinking.json` file in your project with your desired routes and options. See demo app and spec for examples.
+Create a `MobileDeepLinkingConfig.json` file in your project with your desired routes and options. See demo app and spec for examples.
 
 Insert the following line into the `- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation` method in your AppDelegate:
 
@@ -71,7 +71,7 @@ This assumes you have [CocoaPods](http://cocoapods.org/) installed.
 
 ## Demo App
 
-Part of the `MobileDeepLinking.xcworkspace` includes `MobileDeepLinkingDemo`. This is a demo application that provides an example implementation of the `MobileDeepLinking.json` file, along with several custom handlers that demonstrate how to route to client-specified functionality. It also provides example routing to a storyboard based view, a xib based view, and a view without any Interface Builder elements.
+Part of the `MobileDeepLinking.xcworkspace` includes `MobileDeepLinkingDemo`. This is a demo application that provides an example implementation of the `MobileDeepLinkingConfig.json` file, along with several custom handlers that demonstrate how to route to client-specified functionality. It also provides example routing to a storyboard based view, a xib based view, and a view without any Interface Builder elements.
 
 ## License
 
