@@ -41,6 +41,11 @@
     {
         NSError *error = nil;
         NSString *configFilePath = [[NSBundle bundleForClass:[self class]] pathForResource:MOBILEDEEPLINKING_CONFIG_NAME ofType:@"json"];
+        if (configFilePath == nil)
+        {
+            // Fall back to main bundle if not found in class / framework bundle.
+            configFilePath = [[NSBundle mainBundle] pathForResource:MOBILEDEEPLINKING_CONFIG_NAME ofType:@"json"];
+        }
         NSData *configData = [[NSFileManager defaultManager] contentsAtPath:configFilePath];
         NSDictionary *config = [NSJSONSerialization JSONObjectWithData:configData options:0 error:&error];
         if (config == nil)
