@@ -1,3 +1,7 @@
+# This repository is no longer maintained.
+
+Issue reports and pull requests will not be attended.
+
 # MobileDeepLinking [![Build Status](https://travis-ci.org/mobiledeeplinking/mobiledeeplinking-ios.png?branch=master)](https://travis-ci.org/mobiledeeplinking/mobiledeeplinking-ios)
 
 This project is the iOS library component of the MobileDeepLinking specification, the industry standard for mobile application deeplinking. This specification and accompanying libraries simplify and reduce implementation time for deep links as well as provide flexible and powerful features for routing to custom behavior.
